@@ -1,0 +1,61 @@
+.sec_shop {
+    position: relative;
+    z-index: 3;
+}
+
+.sec_shop .line_ {
+    width: 30%;
+    height: 2px;
+}
+
+.sec_shop .item_ .line {
+    width: 10%;
+    height: 1px;
+    transition: 0.5s;
+}
+
+.sec_shop .item_:hover .line {
+    width: 30%;
+}
+
+.sec_shop .card_ .bg_ {
+    position: relative;
+    width: 100%;
+    height: 204px;
+    overflow: hidden;
+}
+
+.sec_shop .card_ .bg_ .black_screen {
+    position: absolute;
+    opacity: 0;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    transition: 0.5s;
+    z-index: 2;
+}
+
+.sec_shop .card_ .bg_ .black_screen a {
+    opacity: 0;
+    transition: 1.5s;
+    z-index: 3;
+}
+
+.sec_shop .card_:hover .bg_ .black_screen {
+    opacity: 1;
+}
+
+.sec_shop .card_:hover .bg_ .black_screen a {
+    opacity: 1;
+}
+
+.sec_shop .card_ .bg_ img {
+    position: absolute;
+    left: 0;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.sec_shop .filter_ {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 10px;
+}

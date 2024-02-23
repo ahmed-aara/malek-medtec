@@ -1,0 +1,75 @@
+<section class="sec_contact py-4">
+
+    <div class="uk-container">
+
+        <div class="uk-grid-medium uk-child-width-auto@l uk-flex" uk-grid>
+
+            <div>
+                <h3 class="f_ExtraLight blackC_" uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false">
+                    Get in Touch</h3>
+            </div>
+
+            <div>
+                <hr class="uk-divider-vertical full_h">
+            </div>
+
+            <div class="uk-width-expand@l" uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: false">
+                <p class="f_Light grayC_">If you have any questions or suggestions for our business,
+                    don’t hesitate
+                    contacting us directly or via our Facebook page.</p>
+            </div>
+
+        </div>
+
+        <div class="uk-grid-small uk-child-width-1-4@l mt-4" uk-grid
+            uk-scrollspy="cls: uk-animation-fade; target: .card_; delay: 200; repeat: false">
+
+            <div *ngFor="let item of contactArr">
+
+                <div class="card_ uk-flex uk-flex-middle uk-flex-center">
+
+                    <div class="text-center full_w">
+
+                        <div style="width: 50px; margin: auto;">
+                            <img width="100%" [src]="'assets/img/vector/' + item.type +'.svg'" alt="">
+                        </div>
+
+                        <div class="uk-flex uk-flex-center my-1">
+                            <div class="line_"></div>
+                        </div>
+
+                        <p class="blackC_">{{item.value}}</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="uk-width-1-3@l" uk-scrollspy="cls: uk-animation-fade; delay: 700; repeat: false">
+                <input class="uk-input" type="text" placeholder="Your Name*..." [(ngModel)]="messageData.name">
+            </div>
+
+            <div class="uk-width-1-3@l" uk-scrollspy="cls: uk-animation-fade; delay: 800; repeat: false">
+                <input class="uk-input" type="text" placeholder="E-mail..." [(ngModel)]="messageData.email">
+            </div>
+
+            <div class="uk-width-1-3@l" uk-scrollspy="cls: uk-animation-fade; delay: 900; repeat: false">
+                <input class="uk-input" type="number" placeholder="Phone*..." onkeypress="validate(event)" type="text"
+                  [(ngModel)]="messageData.phone">
+            </div>
+
+            <div class="uk-width-1-1@l" uk-scrollspy="cls: uk-animation-fade; delay: 1000; repeat: false">
+                <textarea class="uk-textarea" rows="5" placeholder="Message"  [(ngModel)]="messageData.message"></textarea>
+            </div>
+
+            <div class="uk-width-1-3@l" uk-scrollspy="cls: uk-animation-fade; delay: 1100; repeat: false">
+                <button (click)="sendMessage()" class="btn blueBG_ whiteC_ py-2 px-3 yellowC_ blackBG_ f_Medium cursor">Send
+                    Message</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

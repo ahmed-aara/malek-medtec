@@ -1,0 +1,116 @@
+<section class="sec_shop py-3">
+
+    <div class="uk-container">
+
+        <div id="js-oversized" class="uk-grid-small" uk-grid>
+            <div *ngIf="!isMobile" class="uk-width-1-4@l">
+
+                <div uk-sticky="end: #js-oversized; offset: 100;" style="z-index: 100;">
+
+                    <div>
+                        <h3 class="f_Medium">Options</h3>
+                        <div class="line_ blackBG_"></div>
+
+                        <h4 class="mt-2 grayC_ mb-2">Filter By Category</h4>
+
+                        <ul uk-accordion="multiple: true">
+                            <li *ngFor="let category of categoryArr">
+                                <a class="uk-accordion-title font_size_" style="--size: 1rem" href>{{
+                                    category.title }}</a>
+                                <div class="uk-accordion-content mt-1">
+                                    <div *ngFor="let item of category.category">
+                                        <a class="blueC_ ml-1" (click)="filter(category.title, item)"
+                                            routerLink="/shop/{{category.title | lowercase}}/{{item | lowercase | convertToLink : ' ' : '-'}}">•
+                                            {{item | titlecase}}</a>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="uk-width-expand@l">
+
+                <div attr.uk-toggle="target: #modal-filter_{{genertare_id_element}}" *ngIf="isMobile" class="uk-flex uk-flex-middle uk-flex-between filter_ mb-2">
+                    <h4 class="f_Medium">Filter</h4>
+                    <span uk-icon="icon:  triangle-down; ratio: 1.5"></span>
+                </div>
+
+                <div [ngStyle]="{'border-left': isMobile ? '' : '1px solid #D9D9D9' }"
+                    [ngClass]="isMobile? '' : 'pl-2'">
+
+                    <div class="uk-grid-small uk-child-width-1-5@l" uk-grid>
+
+                        <div *ngFor="let item of productArr">
+                            <div class="card_">
+                                <div class="bg_ text-center">
+                                    <img class="full_w full_h"
+                                        [src]="'assets/img/' + item.category + '/' + item.title + '/' + item.img "
+                                        alt="">
+                                    <div class="black_screen full_w full_h uk-flex uk-flex-middle uk-flex-center">
+                                        <a (click)="one(item.category, item.title, item.img)"
+                                            class="btn_a blueC_ px-2 py-1 whiteBG_">
+                                            Discover
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<div id="modal-detail_{{genertare_id_element}}" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <h2 class="uk-modal-title text-center mb-2">{{productData.title | titlecase}}</h2>
+
+        <div class="text-center">
+            <img [src]="productData.img" alt="">
+            <div class="text-center mt-2">
+                <a [href]="productData.link" target="_blank" class="btn_a blueBG_ px-2 py-1 whiteC_">
+                    Learn More
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="modal-filter_{{genertare_id_element}}" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <h2 class="uk-modal-title  mb-2">{{productData.title | titlecase}}</h2>
+
+        
+        <h4 class="mt-2 grayC_ mb-2">Filter By Category</h4>
+
+        <ul uk-accordion="multiple: true">
+            <li *ngFor="let category of categoryArr">
+                <a class="uk-accordion-title font_size_" style="--size: 1rem" href>{{
+                    category.title }}</a>
+                <div class="uk-accordion-content mt-1">
+                    <div *ngFor="let item of category.category">
+                        <a class="blueC_ ml-1" (click)="filter(category.title, item);optionModal('modal-filter_', false)"
+                            routerLink="/shop/{{category.title | lowercase}}/{{item | lowercase | convertToLink : ' ' : '-'}}">•
+                            {{item | titlecase}}</a>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+    </div>
+</div>

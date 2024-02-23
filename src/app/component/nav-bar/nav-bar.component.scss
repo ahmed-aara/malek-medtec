@@ -1,0 +1,157 @@
+.active_sticky_navbar {
+    background-color: #ffffff;
+}
+
+.inactive_sticky_navbar {
+    background-color: #ffffff;
+}
+
+.nav_ .web_nav {
+    display: block;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.nav_ .mobile_nav {
+    display: none;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+nav {
+    height: 85px;
+}
+
+nav .logo_ {
+    position: relative;
+    width: 150px;
+}
+
+nav .uk-navbar-nav {
+    gap: 0 !important;
+}
+
+nav .uk-navbar-nav a {
+    font-size: 17px;
+    min-height: unset !important;
+    height: 100%;
+}
+
+nav .uk-navbar-nav .icon-active {
+    filter: invert(29%) sepia(86%) saturate(447%) hue-rotate(160deg) brightness(100%) contrast(91%);
+}
+
+nav .uk-navbar-nav a.uk-active {
+    color: #0082BD !important;
+}
+
+#offcanvas-menu .body_ .line_ {
+    height: 2px;
+}
+
+#offcanvas-menu .links_ a {
+    position: relative;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#offcanvas-menu .links_ a::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 3px;
+    background-color: #0082BD;
+    margin-right: 10px;
+    transition: 0.5s;
+}
+
+#offcanvas-menu .links_ a:hover::before {
+    width: 10px;
+    margin-right: 30px;
+}
+
+.uk-drop {
+    top: 55px !important;
+}
+
+.uk-navbar-dropdown {
+    box-shadow: 0 5px 12px rgba(237, 238, 247, 0.2) !important;
+}
+
+/*responsive*********************************************/
+
+/*
+[Table of Contents]
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px ipad pro
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px microsoft Lomia 550
+11. 539px
+12. 479px
+13. 400px
+*/
+
+@media only screen and (max-width: 1920px) {
+}
+
+@media only screen and (max-width: 1600px) {
+}
+
+@media only screen and (max-width: 1440px) {
+}
+
+@media only screen and (max-width: 1380px) {
+}
+
+@media only screen and (max-width: 1280px) {
+}
+
+@media only screen and (max-width: 1199px) {
+}
+
+@media only screen and (max-width: 1100px) {
+}
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 991px) {
+}
+
+@media only screen and (max-width: 959px) {
+}
+
+@media only screen and (max-width: 880px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 767px) {
+    //sec_1
+    .nav_ .web_nav {
+        display: none;
+    }
+    .nav_ .mobile_nav {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+}
+
+@media only screen and (max-width: 539px) {
+}
+
+@media only screen and (max-width: 480px) {
+}
+
+@media only screen and (max-width: 479px) {
+}
+
+@media only screen and (max-width: 400px) {
+}

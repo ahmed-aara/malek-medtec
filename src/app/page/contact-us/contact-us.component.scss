@@ -1,0 +1,47 @@
+
+.sec_contact h3 {
+    font-size: 2.5rem;
+}
+
+.sec_contact .card_ {
+    height: 200px;
+    border: 1px solid #b1b1b1;
+    transition: 0.5s;
+}
+
+.sec_contact .card_ .line_ {
+    width: 0%;
+    height: 0px;
+    background-color: #222222;
+    margin: 0px 0px;
+    transition: 0.5s;
+}
+
+.sec_contact .card_ p {
+    font-size: 13px;
+}
+
+.sec_contact .card_:hover {
+    box-shadow: 0px 0px 13px 2px rgb(237 238 247 /60%);
+}
+
+.sec_contact .card_:hover .line_ {
+    width: 20%;
+    height: 2px;
+    background-color: #0082BD;
+    margin: 10px 0px;
+}
+
+.sec_contact .uk-input,
+.sec_contact .uk-textarea {
+    background-color: #ffffff !important;
+}
+
+.sec_contact .uk-input::placeholder,
+.sec_contact .uk-textarea::placeholder {
+    color: #525252 !important;
+}
+
+.sec_contact .btn {
+    font-size: 20px;
+}

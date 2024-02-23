@@ -1,0 +1,255 @@
+<section class="sec_1">
+
+    <div class="uk-container full_h">
+
+        <div class="content_">
+
+            <div class="uk-width-1-3@l">
+
+                <h1 class="blueC_" uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false">
+                    Welcome to</h1>
+
+                <h1 class="f_Bold blueC_" uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false">Malek Medtec
+                    Co.
+                </h1>
+
+                <h3 class="f_Light mt-1 mb-2" uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: false">
+                    Our long term relationship with our customers go deep into working side by side to satisfy the
+                    region potential in aesthetics.
+                </h3>
+
+                <a (click)="sendToKnowMore()" class="btn_a blueBG_ px-4 py-2 whiteC_ f_Medium"
+                    uk-scrollspy="cls: uk-animation-fade; delay: 600; repeat: false">
+                    Learn More
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="uk-grid-collapse uk-child-width-1-2@l full_h header_bg_ full_h full_w brownBG_" uk-grid>
+
+        <div *ngIf="!isMobile"></div>
+
+        <div>
+
+            <div class="bg_ full_h" uk-scrollspy="cls: uk-animation-fade; delay: 200; repeat: false">
+                <img class="full_w full_h" src="assets/img/bg_.jpg" alt="">
+                <div *ngIf="isMobile" class="black_screen full_w full_h"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="sec_2 py-4">
+
+    <div class="uk-container">
+
+        <div class="uk-grid-small uk-child-width-1-3@l" uk-grid
+            uk-scrollspy="cls: uk-animation-fade; target: .card; delay: 300; repeat: false">
+
+            <div *ngFor="let item of aboutArr">
+
+                <div class="card ">
+                    <div class="bg_">
+                        <img class="full_w full_h" [src]="item.img" alt="">
+                    </div>
+                    <div class="body_ p-3">
+                        <h4 class="blackC_ mb-1 f_Bold">{{item.title}}</h4>
+                        <p class="grayC_">{{item.description}}</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="sec_3 py-4">
+
+    <div class="full_w header_">
+        <div class="uk-container">
+            <div class="bg_" uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false">
+                <img class="full_w full_h" src="assets/img/sec_3.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="full_w body_">
+
+        <div class="uk-container">
+
+            <div class="uk-grid-small uk-child-width-1-3@l cards_"
+                uk-scrollspy="cls: uk-animation-fade; target: .card_service; delay: 300; repeat: false" uk-grid>
+
+                <div *ngFor="let item of serviceArr">
+
+                    <div class="card_service p-3">
+
+                        <div class="uk-grid-small" uk-grid>
+
+                            <div class="uk-width-expand@l">
+                                <h4 class="mb-1 blackC_ f_Light">{{item.title}}</h4>
+                                <p class="grayC_ f_Light">{{item.description}}</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="sec_4 my-4">
+
+    <div class="img">
+        <img src="assets/img/sec_4.jpg" uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false" alt="">
+        <div class="black_screen" uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false"></div>
+    </div>
+
+    <div class="caption uk-flex uk-flex-middle uk-flex-center">
+
+        <div class="info-caption uk-width-1-2@l">
+            <h2 class="whiteC_ text-center f_Bold" uk-scrollspy="cls: uk-animation-fade; delay: 600; repeat: false">
+                Malek Medtec Co.</h2>
+
+            <h4 class="whiteC_ f_Light text-center mt-2"
+                uk-scrollspy="cls: uk-animation-fade; delay: 700; repeat: false">
+                Your medical aesthetics partner. Explore innovative solutions for clinics and hospitals in Kuwait and
+                the Gulf. Elevate patient care with quality products and service. Join us in shaping the future of
+                healthcare.
+            </h4>
+
+            <div class="uk-flex uk-flex-center">
+                <a (click)="sendToKnowMore()" class="btn_a whiteBG_ py-2 px-3 f_Medium blueC_ mt-3"
+                    uk-scrollspy="cls: uk-animation-fade; delay: 800; repeat: false">Learn More</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="sec_5 my-4">
+
+    <div class="uk-container">
+
+        <h2 class="f_Bold mb-3" uk-scrollspy="cls: uk-animation-fade; delay: 100; repeat: false">Our Product</h2>
+
+        <div class="uk-grid-small uk-child-width-1-5@l"
+            uk-scrollspy="cls: uk-animation-fade; target: .card_; delay: 100; repeat: false" uk-grid>
+
+            <div *ngFor="let item of productArr">
+                <div class="card_ ">
+                    <div class="bg_ text-center">
+                        <img class="full_w full_h"
+                            [src]="'assets/img/' + item.category + '/' + item.title + '/' + item.img " alt="">
+                        <div class="black_screen full_w full_h uk-flex uk-flex-middle uk-flex-center">
+                            <a (click)="one(item.category, item.title, item.img)"
+                                class="btn_a blueC_ px-2 py-1 whiteBG_">
+                                Discover
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-4">
+            <a routerLink="/shop" class="btn_a blueBG_ px-4 py-1 whiteC_ f_Medium"
+                uk-scrollspy="cls: uk-animation-fade; delay: 100; repeat: false">
+                See All
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="sec_6 my-5 py-4">
+
+    <div class="uk-container">
+
+        <div class="uk-grid-collapse uk-child-width-1-2@l" uk-grid>
+
+            <div>
+
+                <div class="bg_">
+                    <img uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false" class="full_w full_h"
+                        src="assets/img/sec_6.jpg" alt="">
+                </div>
+
+            </div>
+
+            <div>
+                <div class="blueBG_ full_h uk-flex uk-flex-center uk-flex-middle">
+
+                    <div class="text-center" [ngClass]="isMobile? 'px-2 py-3' : 'px-4'">
+
+                        <h2 class="text-center whiteC_ f_SemiBold mb-2"
+                            uk-scrollspy="cls: uk-animation-fade; delay: 350; repeat: false">About Us</h2>
+                        <h5 class="text-center whiteC_ mb-2"
+                            uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false">Malek Medtec Co. is your
+                            trusted partner in the medical
+                            aesthetics industry. Since our establishment in November 2019, we've been dedicated to
+                            providing top-quality products and solutions to clinics and hospitals across Kuwait and the
+                            Gulf region. Explore our range of innovative machines, products, and cosmetics to discover
+                            how we can help you achieve your aesthetic goals.
+                        </h5>
+
+                        <a (click)="sendToKnowMore()" uk-scrollspy="cls: uk-animation-fade; delay: 450; repeat: false"
+                            class="btn_a blueC_ px-3 py-1 whiteBG_ f_Medium">
+                            Learn More
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<app-contact-us></app-contact-us>
+
+<div id="modal-detail_home_{{genertare_id_element}}" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <h2 class="uk-modal-title text-center mb-2">{{productData.title | titlecase}}</h2>
+
+        <div class="text-center">
+            <img [src]="productData.img" alt="">
+            <div class="text-center mt-2">
+                <a [href]="productData.link" target="_blank" class="btn_a blueBG_ px-2 py-1 whiteC_">
+                    Learn More
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf="loading_" class="loading_ uk-flex uk-flex-middle uk-flex-center">
+    <img width="160px" src="../../../assets/img/logo.svg" alt="">
+    <span class="loader ml-1"></span>
+</div>
