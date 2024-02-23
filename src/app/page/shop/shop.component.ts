@@ -27,12 +27,12 @@ export class ShopComponent implements OnInit {
       ]
     },
     {
-      title: 'Surgery', category: [
+      title: 'Plastic Surgery', category: [
         'Surgical products'
       ]
     },
     {
-      title: 'Beauty', category: [
+      title: 'Bueauty & Cosmetics', category: [
         'beauty'
       ]
     },

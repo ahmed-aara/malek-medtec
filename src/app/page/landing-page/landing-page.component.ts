@@ -139,7 +139,7 @@ export class LandingPageComponent implements OnInit {
 
     let product = []
 
-    for (let x = 1; x <= 30; x++) {
+    for (let x = 1; x <= 50; x++) {
       product.push(arr[Math.floor(Math.random() * arr.length)])
     }
 
@@ -149,8 +149,67 @@ export class LandingPageComponent implements OnInit {
       ortopedicProduct.push({ category: item.category, title: item.title, img: item.imgs[Math.floor(Math.random() * item.imgs.length)].img })
     }
 
-    this.productArr = ortopedicProduct
+    // this.productArr = ortopedicProduct
+
+    this.initFilter()
   }
+
+  initFilter() {
+
+    let product_num = 20
+
+    //ortopedic
+    let ortopedic_product = []
+
+    for (let x of this.ortopedicArr) {
+      for (let xx of x.imgs) {
+        ortopedic_product.push({ category: x.category, title: x.title, img: xx.img })
+      }
+    }
+
+    let random_ortopedic_product = ortopedic_product.sort(() => Math.random() - 0.5)
+    let final_ortopedic_product = random_ortopedic_product.slice(0, product_num)
+
+    //surgery
+    let surgery_product = []
+
+    for (let x of this.surgeryArr) {
+      for (let xx of x.imgs) {
+        surgery_product.push({ category: x.category, title: x.title, img: xx.img })
+      }
+    }
+
+    let random_surgery_product = surgery_product.sort(() => Math.random() - 0.5)
+    let final_surgery_product = random_surgery_product.slice(0, product_num)
+
+    //beauty
+    let beauty_product = []
+
+    for (let x of this.beautyArr) {
+      for (let xx of x.imgs) {
+        beauty_product.push({ category: x.category, title: x.title, img: xx.img })
+      }
+    }
+
+    let random_beauty_product = beauty_product.sort(() => Math.random() - 0.5)
+    let final_beauty_product = random_beauty_product.slice(0, product_num)
+
+    //devices
+    let device_product = []
+
+    for (let x of this.devicesArr) {
+      for (let xx of x.imgs) {
+        device_product.push({ category: x.category, title: x.title, img: xx.img })
+      }
+    }
+
+    let random_device_product = device_product.sort(() => Math.random() - 0.5)
+    let final_device_product = random_device_product.slice(0, product_num)
+
+    this.productArr = [...final_ortopedic_product, ...final_surgery_product, ...final_beauty_product, ...final_device_product]
+
+  }
+
 
   one(category: any, title: any, img: any) {
 

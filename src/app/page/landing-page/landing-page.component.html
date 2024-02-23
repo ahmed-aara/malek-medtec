@@ -152,23 +152,33 @@
 
         <h2 class="f_Bold mb-3" uk-scrollspy="cls: uk-animation-fade; delay: 100; repeat: false">Our Product</h2>
 
-        <div class="uk-grid-small uk-child-width-1-5@l"
-            uk-scrollspy="cls: uk-animation-fade; target: .card_; delay: 100; repeat: false" uk-grid>
+        <div uk-filter="target: .js-filter; animation: fade">
 
-            <div *ngFor="let item of productArr">
-                <div class="card_ ">
-                    <div class="bg_ text-center">
-                        <img class="full_w full_h"
-                            [src]="'assets/img/' + item.category + '/' + item.title + '/' + item.img " alt="">
-                        <div class="black_screen full_w full_h uk-flex uk-flex-middle uk-flex-center">
-                            <a (click)="one(item.category, item.title, item.img)"
-                                class="btn_a blueC_ px-2 py-1 whiteBG_">
-                                Discover
-                            </a>
+            <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center">
+                <li class="uk-active" uk-filter-control=".ortopedic"><a class="f_SemiBold" href="#">Ortopedic</a></li>
+                <li uk-filter-control=".surgery"><a class="f_SemiBold" href="#">Plastic Surgery</a></li>
+                <li uk-filter-control=".beauty"><a class="f_SemiBold" href="#">Bueauty & Cosmetics</a></li>
+                <li uk-filter-control=".devices"><a class="f_SemiBold" href="#">Devices</a></li>
+            </ul>
+
+            <ul class="js-filter uk-grid-small uk-child-width-1-5@l uk-text-center" uk-grid
+                uk-scrollspy="cls: uk-animation-fade; target: .card_; delay: 100; repeat: false">
+                <li *ngFor="let item of productArr" [ngClass]="item.category">
+                    <div class="card_ ">
+                        <div class="bg_ text-center">
+                            <img class="full_w full_h"
+                                [src]="'assets/img/' + item.category + '/' + item.title + '/' + item.img " alt="">
+                            <div class="black_screen full_w full_h uk-flex uk-flex-middle uk-flex-center">
+                                <a (click)="one(item.category, item.title, item.img)"
+                                    class="btn_a blueC_ px-2 py-1 whiteBG_">
+                                    Discover
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </li>
+
+            </ul>
 
         </div>
 

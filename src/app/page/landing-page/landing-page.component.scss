@@ -183,6 +183,19 @@
     z-index: 1;
 }
 
+.sec_5 .uk-subnav-pill>.uk-active>a {
+    background-color: #0082BD !important;
+    color: #fff !important;
+}
+
+.sec_5 .uk-subnav-pill>*>:first-child {
+    padding: 10px 15px !important;
+}
+
+.sec_5 .uk-subnav>* {
+    padding-left: 10px !important;
+}
+
 .sec_6 .bg_ {
     position: relative;
     width: 100%;
