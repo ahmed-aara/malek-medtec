@@ -1,0 +1,97 @@
+<section class="sec_detail">
+
+    <div #product_page *ngIf="loaded_" class="uk-container py-4">
+
+        <div class="uk-grid-small" uk-grid>
+
+            <div class="uk-width-expand@l">
+
+                <div class="text-left">
+
+                    <h3 uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false" class="f_Bold">{{
+                        productData.name }}</h3>
+
+                    <div uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false"
+                        class="uk-flex uk-flex-middle uk-flex-left">
+                        <img width="20px" src="assets/img/vector/check.svg" alt="">
+                        <p class="f_Bold px-1 greenC_">Available in store</p>
+                    </div>
+
+                    <div class="my-1">
+
+                        <a uk-scrollspy="cls: uk-animation-fade; delay: 450; repeat: false" [href]="contactLink"
+                            target="_blank" style="--bg: #0082BD;" class="mr-1 a_decoration">
+                            <div class="uk-flex uk-flex-middle uk-flex-center">
+                                <img src="assets/img/vector/phone_white.svg" alt="">
+                                <p class="whiteC_ f_Bold a_decoration ml-1">Call Us</p>
+                            </div>
+                        </a>
+
+                        <a uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: false" [href]="askProductLink"
+                            target="_blank" style="--bg: #27AE60;" class="a_decoration">
+                            <div class="uk-flex uk-flex-middle uk-flex-center">
+                                <img src="assets/img/vector/bag_white.svg" alt="">
+                                <p class="whiteC_ f_Bold a_decoration ml-1">Get the product</p>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <h3 uk-scrollspy="cls: uk-animation-fade; delay: 550; repeat: false" class="f_Bold mb-1">
+                        Specification</h3>
+                    <p uk-scrollspy="cls: uk-animation-fade; delay: 600; repeat: false"
+                        class="white_space nescafeC_ specification_">{{ productData.specification }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="uk-width-1-3@l">
+
+                <div class="product_box">
+
+                    <div class="product_img" uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false">
+                        <img class="full_w full_h" [src]="'assets/img/' + productData.img" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <h3 class="f_Bold text-center mt-4" uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false">Maybe you
+            like it Also this</h3>
+
+        <div class="product_">
+
+            <div class="uk-grid-medium uk-child-width-1-5@l mt-3" uk-grid
+                uk-scrollspy="cls: uk-animation-fade; target: .card_; delay: 200; repeat: false">
+
+                <div *ngFor="let item of productArr">
+
+                    <div class="card_ ">
+                        <div class="bg_ text-center">
+                            <img class="full_w full_h" [src]="'assets/img/' + item.img" alt="">
+                            <div class="black_screen full_w full_h uk-flex uk-flex-middle uk-flex-center">
+                                <a (click)="detail(item.id, false)" routerLink="/product/{{item.id}}"
+                                    class="btn_a blueC_ px-2 py-1 whiteBG_">
+                                    Discover
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div *ngIf="!loaded_" class="loading_ uk-flex uk-flex-middle uk-flex-center py-5">
+        <span class="loader"></span>
+    </div>
+
+</section>

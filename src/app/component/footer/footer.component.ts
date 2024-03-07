@@ -28,7 +28,7 @@ export class FooterComponent implements OnInit {
     },
     {
       type: "location_white",
-      value: "Business Bay - Saudi - Saudi"
+      value: "Kuwait - Kuwait - Kuwait"
     },
     {
       type: "email_white",
@@ -37,9 +37,9 @@ export class FooterComponent implements OnInit {
   ]
 
   social_links: any = [
-    "https://www.facebook.com/",
-    "https://www.instagram.com/agco.design/",
-    "https://www.linkedin.com/company/92910366/admin/",
+    "https://www.facebook.com",
+    "https://www.instagram.com",
+    "https://www.linkedin.com",
     "https://wa.me/+96550409894"
   ]
 

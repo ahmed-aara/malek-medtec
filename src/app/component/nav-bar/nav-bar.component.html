@@ -43,16 +43,16 @@
 
                                     <div *ngFor="let category of categoryArr; let i = index"
                                         [ngStyle]="{'border-right': i == 3 ? '' : '0.5px solid #e6e6e6' }">
-                                        <h6 class="f_SemiBold blueC_ mb-1">{{category.title}}</h6>
+                                        <h6 class="f_SemiBold blueC_ mb-1">{{category.title | titlecase | convertToLink : '-' : ' '}}</h6>
 
                                         <div class="uk-grid-collapse ml-1"
                                             [ngClass]="i == 3 || i == 2 || i == 1 ? 'uk-child-width-1-1@l' : 'uk-child-width-1-2@l'"
                                             uk-grid>
 
-                                            <div *ngFor="let item of category.category">
+                                            <div *ngFor="let item of extractArray(category.category)">
                                                 <a (click)="closeDropdown()"
-                                                    routerLink="/shop/{{category.title | lowercase}}/{{item | lowercase | convertToLink : ' ' : '-'}}">•
-                                                    {{item | titlecase}}</a>
+                                                    routerLink="/shop/{{category.title | lowercase | convertToLink : ' ' : '-'}}/{{item | lowercase | convertToLink : ' ' : '-'}}">•
+                                                    {{item | titlecase | convertToLink : '-' : ' '}}</a>
                                             </div>
 
                                         </div>

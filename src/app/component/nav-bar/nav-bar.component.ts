@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { ServiceService } from 'src/app/services/service.service';
 
 declare const UIkit: any, makeid: any
 
@@ -10,8 +11,7 @@ declare const UIkit: any, makeid: any
 })
 export class NavBarComponent implements OnInit {
 
-  option: any = true;
-
+  //Array
   pagesArr: any = [
     { name: 'Home', link: '/' },
     { name: 'About', link: '/about' },
@@ -19,36 +19,15 @@ export class NavBarComponent implements OnInit {
     { name: 'Contact', link: '/contact' },
   ]
 
-  categoryArr: any = [
-    {
-      title: 'Ortopedic', category: [
-        'accessories', 'ankle', 'arm', 'calf', 'corsets', 'elbow', 'finger',
-        'foot', 'hand', 'hip', 'knee', 'neck', 'shoulder'
-      ]
-    },
-    {
-      title: 'Plastic Surgery', category: [
-        'Surgical products'
-      ]
-    },
-    {
-      title: 'Bueauty & Cosmetics', category: [
-        'beauty'
-      ]
-    },
-    {
-      title: 'Devices', category: [
-        'Physical therapy devices',
-        'Slimming devices'
-      ]
-    }
-  ]
+  categoryArr: any = []
 
   //Variable
   genertare_id_element: any = makeid(12)
+  option: any = true;
 
   constructor(
-    private router: Router) { }
+    private router: Router,
+    private service: ServiceService) { }
 
   ngOnInit(): void {
 
@@ -69,6 +48,26 @@ export class NavBarComponent implements OnInit {
 
       }
     });
+
+    this.getCategory()
+  }
+
+  getCategory() {
+    this.service.getProduct().subscribe(
+      response => {
+        for (let [i, value] of response.entries()) {
+          this.categoryArr.push(
+            {
+              title: value.super_category,
+              category: response[i].product
+            }
+          )
+        }
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 
   callUs() {
@@ -83,6 +82,14 @@ export class NavBarComponent implements OnInit {
 
   closeDropdown() {
     UIkit.dropdown(`#drop_down_${this.genertare_id_element}`).hide(0);
+  }
+
+  extractArray(array: any) {
+    let arr = []
+    for (let x in array) {
+      arr.push(x)
+    }
+    return arr
   }
 
 }

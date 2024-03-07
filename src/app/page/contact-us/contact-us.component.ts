@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServiceService } from 'src/app/services/service.service';
 
 declare const UIkit: any
 
@@ -37,10 +38,13 @@ export class ContactUsComponent {
     }
   ]
 
+  constructor(private service: ServiceService) { }
+
+
   sendMessage() {
     if (this.messageData.name || this.messageData.phone) {
       let message = `I want to communicate with you%0aName: ${this.messageData.name}%0aPhone: ${this.messageData.phone}%0aEmail: ${this.messageData.email}%0aMessage: ${this.messageData.message}`
-      let Link = `https://api.whatsapp.com/send/?phone=+96550409894&text=${message}&type=phone_number&app_absent=0&type_of_request=ContactUs`
+      let Link = `https://api.whatsapp.com/send/?phone=${this.service.phoneNumber}&text=${message}&type=phone_number&app_absent=0&type_of_request=ContactUs`
       window.open(Link, '_blank');
     } else {
       this.notification('you should Enter Your Name and Your Phone')

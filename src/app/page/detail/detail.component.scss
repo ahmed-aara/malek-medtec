@@ -1,0 +1,158 @@
+.sec_detail a {
+    padding: 8px 15px;
+    background-color: var(--bg);
+    display: inline-block;
+    border-radius: 0px;
+}
+
+.sec_detail a img {
+    width: 18px;
+    margin-left: 5px;
+}
+
+.sec_detail .specification_ {
+    font-size: 1.1rem;
+}
+
+.sec_detail .product_box {
+    display: flex;
+}
+
+.sec_detail .product_img {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background-color: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 0.5rem;
+}
+
+.sec_detail .product_img img {
+    position: absolute;
+    object-fit: contain;
+}
+
+.sec_detail .card_ .bg_ {
+    position: relative;
+    width: 100%;
+    height: 204px;
+    overflow: hidden;
+}
+
+.sec_detail .card_ .bg_ .black_screen {
+    position: absolute;
+    opacity: 0;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    transition: 0.5s;
+    z-index: 2;
+}
+
+.sec_detail .card_ .bg_ .black_screen a {
+    opacity: 0;
+    transition: 1.5s;
+    z-index: 3;
+}
+
+.sec_detail .card_:hover .bg_ .black_screen {
+    opacity: 1;
+}
+
+.sec_detail .card_:hover .bg_ .black_screen a {
+    opacity: 1;
+}
+
+.sec_detail .card_ .bg_ img {
+    position: absolute;
+    left: 0;
+    object-fit: contain;
+    z-index: 1;
+}
+
+/*responsive*********************************************/
+
+/*
+[Table of Contents]
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px ipad pro
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px microsoft Lomia 550
+11. 539px
+12. 479px
+13. 400px
+*/
+
+@media only screen and (max-width: 1920px) {
+}
+
+@media only screen and (max-width: 1600px) {
+}
+
+@media only screen and (max-width: 1440px) {
+}
+
+@media only screen and (max-width: 1380px) {
+}
+
+@media only screen and (max-width: 1280px) {
+}
+
+@media only screen and (max-width: 1199px) {
+}
+
+@media only screen and (max-width: 1100px) {
+}
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 991px) {
+}
+
+@media only screen and (max-width: 959px) {
+}
+
+@media only screen and (max-width: 880px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 767px) {
+    //
+    .sec_detail .product_box {
+        flex-direction: column;
+    }
+
+    .sec_detail .product_box .product_img {
+        width: 100%;
+        height: 400px;
+        margin-left: unset;
+        order: 1;
+    }
+
+    .sec_detail .product_box .product_img img {
+        object-fit: contain;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+}
+
+@media only screen and (max-width: 539px) {
+}
+
+@media only screen and (max-width: 480px) {
+}
+
+@media only screen and (max-width: 479px) {
+}
+
+@media only screen and (max-width: 400px) {
+}

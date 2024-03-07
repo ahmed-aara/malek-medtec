@@ -16,12 +16,12 @@
                         <ul uk-accordion="multiple: true">
                             <li *ngFor="let category of categoryArr">
                                 <a class="uk-accordion-title font_size_" style="--size: 1rem" href>{{
-                                    category.title }}</a>
+                                    category.title | titlecase | convertToLink : '-' : ' ' }}</a>
                                 <div class="uk-accordion-content mt-1">
-                                    <div *ngFor="let item of category.category">
-                                        <a class="blueC_ ml-1" (click)="filter(category.title, item)"
-                                            routerLink="/shop/{{category.title | lowercase}}/{{item | lowercase | convertToLink : ' ' : '-'}}">•
-                                            {{item | titlecase}}</a>
+                                    <div *ngFor="let item of extractArray(category.category)">
+                                        <a class="blueC_ ml-1" (click)="getProduct(item, false)"
+                                            routerLink="/shop/{{category.title | lowercase | convertToLink : ' ' : '-'}}/{{item | lowercase | convertToLink : ' ' : '-'}}">•
+                                            {{item | titlecase | convertToLink : '-' : ' '}}</a>
                                     </div>
                                 </div>
                             </li>
@@ -35,7 +35,8 @@
             </div>
             <div class="uk-width-expand@l">
 
-                <div attr.uk-toggle="target: #modal-filter_{{genertare_id_element}}" *ngIf="isMobile" class="uk-flex uk-flex-middle uk-flex-between filter_ mb-2">
+                <div attr.uk-toggle="target: #modal-filter_{{genertare_id_element}}" *ngIf="isMobile"
+                    class="uk-flex uk-flex-middle uk-flex-between filter_ mb-2">
                     <h4 class="f_Medium">Filter</h4>
                     <span uk-icon="icon:  triangle-down; ratio: 1.5"></span>
                 </div>
@@ -48,12 +49,9 @@
                         <div *ngFor="let item of productArr">
                             <div class="card_">
                                 <div class="bg_ text-center">
-                                    <img class="full_w full_h"
-                                        [src]="'assets/img/' + item.category + '/' + item.title + '/' + item.img "
-                                        alt="">
+                                    <img class="full_w full_h" [src]="'assets/img/' + item.img " alt="">
                                     <div class="black_screen full_w full_h uk-flex uk-flex-middle uk-flex-center">
-                                        <a (click)="one(item.category, item.title, item.img)"
-                                            class="btn_a blueC_ px-2 py-1 whiteBG_">
+                                        <a routerLink="/product/{{item.id}}" class="btn_a blueC_ px-2 py-1 whiteBG_">
                                             Discover
                                         </a>
                                     </div>
@@ -94,18 +92,17 @@
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <h2 class="uk-modal-title  mb-2">{{productData.title | titlecase}}</h2>
 
-        
         <h4 class="mt-2 grayC_ mb-2">Filter By Category</h4>
 
         <ul uk-accordion="multiple: true">
             <li *ngFor="let category of categoryArr">
                 <a class="uk-accordion-title font_size_" style="--size: 1rem" href>{{
-                    category.title }}</a>
+                    category.title | titlecase | convertToLink : '-' : ' ' }}</a>
                 <div class="uk-accordion-content mt-1">
-                    <div *ngFor="let item of category.category">
-                        <a class="blueC_ ml-1" (click)="filter(category.title, item);optionModal('modal-filter_', false)"
+                    <div *ngFor="let item of extractArray(category.category)">
+                        <a class="blueC_ ml-1" (click)="getProduct(item, false);optionModal('modal-filter_', false)"
                             routerLink="/shop/{{category.title | lowercase}}/{{item | lowercase | convertToLink : ' ' : '-'}}">•
-                            {{item | titlecase}}</a>
+                            {{item | titlecase | convertToLink : '-' : ' '}}</a>
                     </div>
                 </div>
             </li>

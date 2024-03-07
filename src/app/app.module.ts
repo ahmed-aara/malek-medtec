@@ -17,6 +17,7 @@ import { ConvertToLinkPipe } from './pipe/convert-to-link.pipe';
 import { SplitPipe } from './pipe/split.pipe';
 import { ContactUsComponent } from './page/contact-us/contact-us.component';
 import { AboutComponent } from './page/about/about.component';
+import { DetailComponent } from './page/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AboutComponent } from './page/about/about.component';
     ConvertToLinkPipe,
     SplitPipe,
     ContactUsComponent,
-    AboutComponent
+    AboutComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,

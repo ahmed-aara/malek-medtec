@@ -1,4 +1,4 @@
-<section class="sec_1">
+<section hidden class="sec_1">
 
     <div class="uk-container full_h">
 
@@ -46,7 +46,7 @@
 
 </section>
 
-<section class="sec_2 py-4">
+<section hidden class="sec_2 py-4">
 
     <div class="uk-container">
 
@@ -73,7 +73,7 @@
 
 </section>
 
-<section class="sec_3 py-4">
+<section hidden class="sec_3 py-4">
 
     <div class="full_w header_">
         <div class="uk-container">
@@ -115,7 +115,7 @@
 
 </section>
 
-<section class="sec_4 my-4">
+<section hidden class="sec_4 my-4">
 
     <div class="img">
         <img src="assets/img/sec_4.jpg" uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false" alt="">
@@ -156,21 +156,19 @@
 
             <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center">
                 <li class="uk-active" uk-filter-control=".ortopedic"><a class="f_SemiBold" href="#">Ortopedic</a></li>
-                <li uk-filter-control=".surgery"><a class="f_SemiBold" href="#">Plastic Surgery</a></li>
-                <li uk-filter-control=".beauty"><a class="f_SemiBold" href="#">Bueauty & Cosmetics</a></li>
+                <li uk-filter-control=".plastic-surgery"><a class="f_SemiBold" href="#">Plastic Surgery</a></li>
+                <li uk-filter-control=".bueauty-cosmetics"><a class="f_SemiBold" href="#">Bueauty & Cosmetics</a></li>
                 <li uk-filter-control=".devices"><a class="f_SemiBold" href="#">Devices</a></li>
             </ul>
 
             <ul class="js-filter uk-grid-small uk-child-width-1-5@l uk-text-center" uk-grid
                 uk-scrollspy="cls: uk-animation-fade; target: .card_; delay: 100; repeat: false">
-                <li *ngFor="let item of productArr" [ngClass]="item.category">
+                <li *ngFor="let item of productArr" [ngClass]="item.super_category">
                     <div class="card_ ">
                         <div class="bg_ text-center">
-                            <img class="full_w full_h"
-                                [src]="'assets/img/' + item.category + '/' + item.title + '/' + item.img " alt="">
+                            <img class="full_w full_h" [src]="'assets/img/' + item.img" alt="">
                             <div class="black_screen full_w full_h uk-flex uk-flex-middle uk-flex-center">
-                                <a (click)="one(item.category, item.title, item.img)"
-                                    class="btn_a blueC_ px-2 py-1 whiteBG_">
+                                <a routerLink="/product/{{item.id}}" class="btn_a blueC_ px-2 py-1 whiteBG_">
                                     Discover
                                 </a>
                             </div>
@@ -241,23 +239,6 @@
 </section>
 
 <app-contact-us></app-contact-us>
-
-<div id="modal-detail_home_{{genertare_id_element}}" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <h2 class="uk-modal-title text-center mb-2">{{productData.title | titlecase}}</h2>
-
-        <div class="text-center">
-            <img [src]="productData.img" alt="">
-            <div class="text-center mt-2">
-                <a [href]="productData.link" target="_blank" class="btn_a blueBG_ px-2 py-1 whiteC_">
-                    Learn More
-                </a>
-            </div>
-        </div>
-
-    </div>
-</div>
 
 <div *ngIf="loading_" class="loading_ uk-flex uk-flex-middle uk-flex-center">
     <img width="160px" src="../../../assets/img/logo.svg" alt="">
