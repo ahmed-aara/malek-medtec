@@ -183,16 +183,16 @@
     z-index: 1;
 }
 
-.sec_5 .uk-subnav-pill>.uk-active>a {
-    background-color: #0082BD !important;
+.sec_5 .uk-subnav-pill > .uk-active > a {
+    background-color: #0082bd !important;
     color: #fff !important;
 }
 
-.sec_5 .uk-subnav-pill>*>:first-child {
+.sec_5 .uk-subnav-pill > * > :first-child {
     padding: 10px 15px !important;
 }
 
-.sec_5 .uk-subnav>* {
+.sec_5 .uk-subnav > * {
     padding-left: 10px !important;
 }
 
@@ -288,7 +288,7 @@
     }
 
     .sec_3 .cards_ {
-        margin-top: 9rem;
+        margin-top: 17rem;
         padding: 0 1rem;
     }
 }

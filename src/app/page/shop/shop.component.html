@@ -47,7 +47,7 @@
                     <div class="uk-grid-small uk-child-width-1-5@l" uk-grid>
 
                         <div *ngFor="let item of productArr">
-                            <div class="card_">
+                            <div class="card_"  [ngStyle]="{'border': item.name === '' ? '1px solid red' : '' }"  >
                                 <div class="bg_ text-center">
                                     <img class="full_w full_h" [src]="'assets/img/' + item.img " alt="">
                                     <div class="black_screen full_w full_h uk-flex uk-flex-middle uk-flex-center">

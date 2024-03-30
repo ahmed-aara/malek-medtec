@@ -15,7 +15,7 @@ export class NavBarComponent implements OnInit {
   pagesArr: any = [
     { name: 'Home', link: '/' },
     { name: 'About', link: '/about' },
-    { name: 'Products', link: '/product' },
+    { name: 'Products', link: '/shop' },
     { name: 'Contact', link: '/contact' },
   ]
 

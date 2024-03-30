@@ -26,8 +26,8 @@ export class LandingPageComponent implements OnInit {
   aboutArr: any = [
     {
       img: 'assets/img/medical-aesthetics-machines.jpg',
-      title: 'Medical Aesthetics Machines',
-      description: 'Elevate your practice with our advanced medical aesthetics machines. From laser systems to body contouring devices, our cutting-edge technology delivers superior results for hair removal, skin rejuvenation, and more.'
+      title: 'Medical Health Machines',
+      description: 'Elevate your practice with our advanced medical aesthetics and health machines. From laser systems to body contouring devices, our cutting-edge technology delivers superior results for hair removal, skin rejuvenation, and more.'
     },
     {
       img: 'assets/img/skincare-products.jpg',
@@ -64,7 +64,7 @@ export class LandingPageComponent implements OnInit {
     },
     {
       title: 'Industry Leadership',
-      description: `As leaders in the field, we set high standards for excellence, driving innovation and inspiring positive change within the medical aesthetics industry.`
+      description: `As leaders in the field, we set high standards for excellence, driving innovation and inspiring positive change within the medical aesthetics and health industry.`
     },
   ]
 

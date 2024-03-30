@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from 'src/app/services/service.service';
 
 declare const getDate: any
 
@@ -13,14 +14,14 @@ export class FooterComponent implements OnInit {
   pagesArr: any = [
     { name: 'Home', link: '/' },
     { name: 'About', link: '/about' },
-    { name: 'Product', link: '/product' },
+    { name: 'Product', link: '/shop' },
     { name: 'Contact', link: '/contact' },
   ]
 
   contactArr: any = [
     {
       type: "phone_white",
-      value: "+96550409894"
+      value: `${this.service.phoneNumber}`
     },
     {
       type: "time_white",
@@ -38,15 +39,15 @@ export class FooterComponent implements OnInit {
 
   social_links: any = [
     "https://www.facebook.com",
-    "https://www.instagram.com",
+    "https://www.instagram.com/malek_medtec_co/",
     "https://www.linkedin.com",
-    "https://wa.me/+96550409894"
+    `https://wa.me/${this.service.phoneNumber}`
   ]
 
   //Variable
   year: any
 
-  constructor() {
+  constructor(private service: ServiceService) {
   }
 
   ngOnInit(): void {
