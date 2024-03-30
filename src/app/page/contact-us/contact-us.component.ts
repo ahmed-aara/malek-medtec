@@ -26,11 +26,11 @@ export class ContactUsComponent {
     },
     {
       type: "time",
-      value: "Mon-Sat: 08:00AM - 05:00PM"
+      value: "Sat-Thur: 08:00AM - 05:00PM"
     },
     {
       type: "location",
-      value: "Business Bay - Saudi - Saudi"
+      value: "Kuwait - Kuwait"
     },
     {
       type: "email",

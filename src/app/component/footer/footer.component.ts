@@ -25,11 +25,11 @@ export class FooterComponent implements OnInit {
     },
     {
       type: "time_white",
-      value: "Mon-Sat: 08:00AM - 05:00PM"
+      value: "Sat-Thur: 08:00AM - 05:00PM"
     },
     {
       type: "location_white",
-      value: "Kuwait - Kuwait - Kuwait"
+      value: "Kuwait - Kuwait"
     },
     {
       type: "email_white",
