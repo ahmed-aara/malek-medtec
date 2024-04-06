@@ -41,7 +41,7 @@ import { DetailComponent } from './page/detail/detail.component';
     FormsModule,
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    // { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
