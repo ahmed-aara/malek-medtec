@@ -29,7 +29,7 @@ export class FooterComponent implements OnInit {
     },
     {
       type: "location_white",
-      value: "Kuwait - Kuwait"
+      value: "Kuwait - Hawally"
     },
     {
       type: "email_white",
@@ -38,7 +38,7 @@ export class FooterComponent implements OnInit {
   ]
 
   social_links: any = [
-    "https://www.facebook.com",
+    "https://www.facebook.com/people/Alance-massage/100083315712315/",
     "https://www.instagram.com/malek_medtec_co/",
     "https://www.linkedin.com",
     `https://wa.me/${this.service.phoneNumber}`

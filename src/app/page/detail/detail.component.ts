@@ -37,7 +37,6 @@ export class DetailComponent {
     const params = this.activatedRoute.snapshot.params;
     this.product_id = params['id']
     this.detail(params['id'], false)
-    this.getProduct()
     let message = `I want to communicate with you`
     this.contactLink = `https://api.whatsapp.com/send/?phone=${this.service.phoneNumber}&text=${message}&type=phone_number&app_absent=0&type_of_request=ContactUs`
   }
@@ -66,6 +65,8 @@ export class DetailComponent {
           specification: data.specification
         }
 
+        this.reltaedProduct(response, data.super_category, data.category)
+
         let message = `I want to know more details about *(${data.name})*%0a${window.location.href}`
         this.askProductLink = `https://api.whatsapp.com/send/?phone=${this.service.phoneNumber}&text=${message}&type=phone_number&app_absent=0&type_of_request=ProductDetail`
 
@@ -84,36 +85,21 @@ export class DetailComponent {
     )
   }
 
-  getProduct() {
-    this.service.getProduct().subscribe(
-      response => {
+  reltaedProduct(product: any, super_category: any, category: any) {
 
-        let arr = []
-        let product_num = 10
+    let data = product.find((i: any) => {
+      return i.super_category = super_category
+    }).product[category]
 
-        for (let [i, value] of response.entries()) {
-          for (let x in response[i].product) {
-            for (let y of response[i].product[x]) {
-              arr.push(y)
-            }
-          }
-        }
+    const shuffle = (array: string[]) => {
+      return array.map((a) => ({ sort: Math.random(), value: a }))
+        .sort((a, b) => a.sort - b.sort)
+        .map((a) => a.value);
+    };
 
-        const shuffle = (array: string[]) => {
-          return array.map((a) => ({ sort: Math.random(), value: a }))
-            .sort((a, b) => a.sort - b.sort)
-            .map((a) => a.value);
-        };
+    data = shuffle(data);
 
-        arr = shuffle(arr);
-
-        this.productArr = arr.slice(0, product_num)
-
-      },
-      err => {
-        console.log(err)
-      }
-    )
+    this.productArr = data.slice(0, 10)
   }
 
 }

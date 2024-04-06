@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MailService } from 'src/app/service/mail.service';
 import { ServiceService } from 'src/app/services/service.service';
 
 declare const UIkit: any
@@ -30,7 +31,7 @@ export class ContactUsComponent {
     },
     {
       type: "location",
-      value: "Kuwait - Kuwait"
+      value: "Kuwait - Hawally"
     },
     {
       type: "email",
@@ -38,17 +39,41 @@ export class ContactUsComponent {
     }
   ]
 
-  constructor(private service: ServiceService) { }
+  //Variable
+  loading: any = false
 
+  constructor(private service: ServiceService, private mail: MailService) { }
 
   sendMessage() {
-    if (this.messageData.name || this.messageData.phone) {
-      let message = `I want to communicate with you%0aName: ${this.messageData.name}%0aPhone: ${this.messageData.phone}%0aEmail: ${this.messageData.email}%0aMessage: ${this.messageData.message}`
-      let Link = `https://api.whatsapp.com/send/?phone=${this.service.phoneNumber}&text=${message}&type=phone_number&app_absent=0&type_of_request=ContactUs`
-      window.open(Link, '_blank');
+
+    if (this.messageData.name === '' || this.messageData.name === null ||
+      this.messageData.phone === '' || this.messageData.phone === null ||
+      this.messageData.message === '' || this.messageData.message === null
+    ) {
+      this.notification('Please enter all required data')
     } else {
-      this.notification('you should Enter Your Name and Your Phone')
+      this.loading = true
+      this.mail.sendMail(this.messageData).subscribe(
+        response => {
+          if (response.success) {
+            this.notification(response.message)
+            this.loading = false
+            this.messageData = {
+              name: null,
+              email: null,
+              phone: null,
+              message: null,
+            }
+
+          }
+        },
+        err => {
+          console.log(err)
+          this.loading = false
+        }
+      )
     }
+
   }
 
   notification(message: any) {

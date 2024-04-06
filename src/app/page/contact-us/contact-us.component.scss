@@ -45,3 +45,8 @@
 .sec_contact .btn {
     font-size: 20px;
 }
+
+.sec_contact .btn:disabled
+{
+  background-color: #cccccc !important;
+}

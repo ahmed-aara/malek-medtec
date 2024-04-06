@@ -60,12 +60,18 @@
             </div>
 
             <div class="uk-width-1-1@l" uk-scrollspy="cls: uk-animation-fade; delay: 1000; repeat: false">
-                <textarea class="uk-textarea" rows="5" placeholder="Message"  [(ngModel)]="messageData.message"></textarea>
+                <textarea class="uk-textarea" rows="5" placeholder="Message*"  [(ngModel)]="messageData.message"></textarea>
             </div>
 
             <div class="uk-width-1-3@l" uk-scrollspy="cls: uk-animation-fade; delay: 1100; repeat: false">
-                <button (click)="sendMessage()" class="btn blueBG_ whiteC_ py-2 px-3 yellowC_ blackBG_ f_Medium cursor">Send
-                    Message</button>
+                <button (click)="sendMessage()"
+                
+                [disabled]="loading"
+                class="btn blueBG_ whiteC_ py-2 px-3 yellowC_ blackBG_ f_Medium cursor">
+                    
+                    {{loading? 'Loading...' : 'Send Message'}}
+
+                    </button>
             </div>
 
         </div>
