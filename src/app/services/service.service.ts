@@ -14,19 +14,19 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getProduct(): Observable<any> {
-    return this.http.get(this.url_product);
-  }
+  // getProduct(): Observable<any> {
+  //   return this.http.get(this.url_product);
+  // }
 
-  getProductById(id: string): Observable<any> {
-    return this.http.get<Array<any>>(this.url_product)
-      .pipe(
-        map((items: Array<any>) => {
-          return items.find((item: any) => {
-            return item.id === id;
-          });
-        })
-      );
-  }
+  // getProductById(id: string): Observable<any> {
+  //   return this.http.get<Array<any>>(this.url_product)
+  //     .pipe(
+  //       map((items: Array<any>) => {
+  //         return items.find((item: any) => {
+  //           return item.id === id;
+  //         });
+  //       })
+  //     );
+  // }
 
 }

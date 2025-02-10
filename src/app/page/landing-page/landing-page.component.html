@@ -130,7 +130,8 @@
 
             <h4 class="whiteC_ f_Light text-center mt-2"
                 uk-scrollspy="cls: uk-animation-fade; delay: 700; repeat: false">
-                Your medical aesthetics and health partner. Explore innovative solutions for clinics and hospitals in Kuwait and
+                Your medical aesthetics and health partner. Explore innovative solutions for clinics and hospitals in
+                Kuwait and
                 the Gulf. Elevate patient care with quality products and service. Join us in shaping the future of
                 healthcare.
             </h4>
@@ -164,9 +165,9 @@
             <ul class="js-filter uk-grid-small uk-child-width-1-5@l uk-text-center" uk-grid
                 uk-scrollspy="cls: uk-animation-fade; target: .card_; delay: 100; repeat: false">
                 <li *ngFor="let item of productArr" [ngClass]="item.super_category">
-                    <div class="card_ ">
+                    <div class="card_">
                         <div class="bg_ text-center">
-                            <img class="full_w full_h" [src]="'assets/img/' + item.img" alt="">
+                            <img class="full_w full_h" [src]="img_url + item.img" alt="">
                             <div class="black_screen full_w full_h uk-flex uk-flex-middle uk-flex-center">
                                 <a routerLink="/product/{{item.id}}" class="btn_a blueC_ px-2 py-1 whiteBG_">
                                     Discover
@@ -216,7 +217,8 @@
                         <h5 class="text-center whiteC_ mb-2"
                             uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false">Malek Medtec Co. is your
                             trusted partner in the medical
-                            aesthetics and health industry. Since our establishment in November 2019, we've been dedicated to
+                            aesthetics and health industry. Since our establishment in November 2019, we've been
+                            dedicated to
                             providing top-quality products and solutions to clinics and hospitals across Kuwait and the
                             Gulf region. Explore our range of innovative machines, products, and cosmetics to discover
                             how we can help you achieve your aesthetic goals.

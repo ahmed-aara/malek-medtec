@@ -56,22 +56,21 @@
 
             <div class="uk-width-1-3@l" uk-scrollspy="cls: uk-animation-fade; delay: 900; repeat: false">
                 <input class="uk-input" type="number" placeholder="Phone*..." onkeypress="validate(event)" type="text"
-                  [(ngModel)]="messageData.phone">
+                    [(ngModel)]="messageData.phone">
             </div>
 
             <div class="uk-width-1-1@l" uk-scrollspy="cls: uk-animation-fade; delay: 1000; repeat: false">
-                <textarea class="uk-textarea" rows="5" placeholder="Message*"  [(ngModel)]="messageData.message"></textarea>
+                <textarea class="uk-textarea" rows="5" placeholder="Message*"
+                    [(ngModel)]="messageData.message"></textarea>
             </div>
 
             <div class="uk-width-1-3@l" uk-scrollspy="cls: uk-animation-fade; delay: 1100; repeat: false">
-                <button (click)="sendMessage()"
-                
-                [disabled]="loading"
-                class="btn blueBG_ whiteC_ py-2 px-3 yellowC_ blackBG_ f_Medium cursor">
-                    
+                <button (click)="sendMessage()" [disabled]="loading"
+                    class="btn blueBG_ whiteC_ py-2 px-3 yellowC_ blackBG_ f_Medium cursor">
+
                     {{loading? 'Loading...' : 'Send Message'}}
 
-                    </button>
+                </button>
             </div>
 
         </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MailService } from 'src/app/service/mail.service';
+import { MailService } from 'src/app/services/mail.service';
 import { ServiceService } from 'src/app/services/service.service';
 
 declare const UIkit: any

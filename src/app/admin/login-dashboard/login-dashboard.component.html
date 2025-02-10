@@ -1,0 +1,45 @@
+<section class="uk-flex uk-flex-middle uk-flex-center">
+
+    <div class="uk-width-1-5@l">
+
+        <form [formGroup]="form" (submit)="login()">
+
+            <div class="uk-grid-small uk-child-width-1-1@l" uk-grid>
+
+                <div>
+                    <input class="uk-input" placeholder="Email *" type="text" formControlName="email">
+                    <div *ngIf="f.email.touched && f.email.errors">
+                        <p *ngIf="f.email.errors && f.email.errors['required']" class="redC_ small_">Email is
+                            required.</p>
+                        <p *ngIf="f.email.errors && f.email.errors['email']" class="redC_ small_">Email is not
+                            Formate
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <input class="uk-input" placeholder="Password *" type="password" formControlName="password">
+                    <div *ngIf="f.password.touched && f.password.errors">
+                        <p *ngIf="f.password.errors && f.password.errors['required']" class="redC_ small_">The Password
+                            is
+                            required.</p>
+
+                    </div>
+                </div>
+
+                <div>
+
+                    <button class="btn blueBG_ whiteC_ py-1 px-3 yellowC_ blackBG_ f_Medium cursor full_w" type="submit"
+                        [disabled]="form.invalid || loading_" style="--padding: 13px 35px 12px;
+                            --size: 0.9rem">
+                        {{loading_? 'Loading...' : 'Login'}}</button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>

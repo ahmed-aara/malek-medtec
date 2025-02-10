@@ -51,7 +51,7 @@
                 <div class="product_box">
 
                     <div class="product_img" uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false">
-                        <img class="full_w full_h" [src]="'assets/img/' + productData.img" alt="">
+                        <img class="full_w full_h" [src]="img_url + productData.img" alt="">
                     </div>
 
                 </div>
@@ -72,7 +72,7 @@
 
                     <div class="card_ ">
                         <div class="bg_ text-center">
-                            <img class="full_w full_h" [src]="'assets/img/' + item.img" alt="">
+                            <img class="full_w full_h" [src]="img_url + item.img" alt="">
                             <div class="black_screen full_w full_h uk-flex uk-flex-middle uk-flex-center">
                                 <a (click)="detail(item.id, false)" routerLink="/product/{{item.id}}"
                                     class="btn_a blueC_ px-2 py-1 whiteBG_">

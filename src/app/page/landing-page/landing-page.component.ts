@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { ServiceService } from 'src/app/services/service.service';
+import { environment } from 'src/environments/environment.prod';
 
 declare const UIkit: any, makeid: any
 
@@ -22,6 +23,7 @@ export class LandingPageComponent implements OnInit {
   genertare_id_element: any = makeid(12)
   isMobile: any = false
   loading_: any = true
+  img_url: any = environment.api_url
 
   //Array
   aboutArr: any = [
@@ -90,6 +92,8 @@ export class LandingPageComponent implements OnInit {
   getProduct() {
     this.product.get().subscribe(
       response => {
+
+
 
         let arr = []
         let product_num = 20

@@ -1,0 +1,48 @@
+<section class="sec_control_panal">
+
+    <div class="uk-grid-collapse" uk-grid>
+
+        <div class="uk-width-1-6@l">
+            <div class="full_w">
+
+                <div class="sidebar_ full_w">
+
+                    <div class="uk-flex uk-flex-middle uk-flex-between p-2">
+
+                        <div>
+                            <h3 class="f_Bold line_height" style="margin-top: 6px !important;">Status</h3>
+                        </div>
+
+                    </div>
+
+                    <div class="line_"></div>
+
+                    <div class="p-2">
+
+                        <div *ngFor="let item of pageArr">
+                            <div>
+                                <a class="menu_ f_SemiBold mb-1" routerLink="{{item.link}}"
+                                    routerLinkActive="active_">{{item.title}}</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="uk-width-expand">
+            <div>
+                <div class="body_">
+                    <div class="p-2">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>

@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { ServiceService } from 'src/app/services/service.service';
+import { environment } from 'src/environments/environment.prod';
 
 declare const UIkit: any
 
@@ -19,6 +20,7 @@ export class DetailComponent {
   product_id: any
   askProductLink: any
   contactLink: any
+  img_url: any = environment.api_url
 
   //Array
   productArr: any = []
@@ -89,7 +91,7 @@ export class DetailComponent {
   reltaedProduct(product: any, super_category: any, category: any) {
 
     let data = product.find((i: any) => {
-      return i.super_category = super_category
+      return i.super_category === super_category
     }).product[category]
 
     const shuffle = (array: string[]) => {

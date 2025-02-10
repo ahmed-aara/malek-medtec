@@ -5,6 +5,12 @@ import { ShopComponent } from './page/shop/shop.component';
 import { ContactUsComponent } from './page/contact-us/contact-us.component';
 import { AboutComponent } from './page/about/about.component';
 import { DetailComponent } from './page/detail/detail.component';
+import { LoginDashboardComponent } from './admin/login-dashboard/login-dashboard.component';
+import { ControlPanelComponent } from './admin/control-panel/control-panel.component';
+import { IsNotLoginService } from './services/auth-guard/is-not-login.service';
+import { IsLoginService } from './services/auth-guard/is-login.service';
+import { IsAdminService } from './services/auth-guard/is-admin.service';
+import { ProductComponent } from './admin/product/product.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -14,6 +20,17 @@ const routes: Routes = [
   { path: 'contact', component: ContactUsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'product/:id', component: DetailComponent },
+  { path: 'admin/login', component: LoginDashboardComponent, canActivate: [IsNotLoginService] },
+  {
+    path: 'admin', component: ControlPanelComponent, canActivate: [IsLoginService, IsAdminService],
+    children: [
+      // { path: 'setting', component: SettingComponent },
+      { path: 'product', component: ProductComponent },
+      // { path: 'messages', component: MessagesComponent },
+      // { path: 'order', component: OrdersComponent },
+      // { path: 'category', component: CategoryComponent },
+    ]
+  },
 ];
 
 @NgModule({

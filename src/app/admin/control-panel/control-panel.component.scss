@@ -1,0 +1,34 @@
+.sec_control_panal .sidebar_ {
+    width: 100%;
+    height: 100vh;
+    border-right: 2px solid #d9d9d9;
+}
+
+.sec_control_panal .body_ {
+    overflow-y: scroll;
+    width: 100%;
+    height: 100vh;
+}
+
+.sec_control_panal .sidebar_ .menu_ {
+    display: block;
+    padding:5px 10px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.sec_control_panal .sidebar_ .menu_.active_ {
+    background-color: #181818;
+    color: white !important;
+}
+
+.sec_control_panal .sidebar_ .menu_:hover {
+    background-color: #181818;
+    color: white !important;
+}
+
+.sec_control_panal .sidebar_ .line_ {
+    width: 100%;
+    height: 2px;
+    background-color: #d9d9d9;
+}
