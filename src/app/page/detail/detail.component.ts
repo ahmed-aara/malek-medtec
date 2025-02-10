@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ProductService } from 'src/app/services/product.service';
 import { ServiceService } from 'src/app/services/service.service';
 
 declare const UIkit: any
@@ -31,7 +32,7 @@ export class DetailComponent {
 
   loaded_: any = false
 
-  constructor(private service: ServiceService, private activatedRoute: ActivatedRoute) { }
+  constructor(private product: ProductService, private service: ServiceService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -42,7 +43,7 @@ export class DetailComponent {
   }
 
   detail(id: any, scroll: any) {
-    this.service.getProduct().subscribe(
+    this.product.get().subscribe(
       response => {
 
         let arr = []

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ServiceService } from 'src/app/services/service.service';
+import { ProductService } from 'src/app/services/product.service';
+import { environment } from 'src/environments/environment.prod';
 
 declare const UIkit: any, makeid: any
 
@@ -28,8 +29,9 @@ export class ShopComponent implements OnInit {
   isMobile: any = false
   category: any
   type: any
+  img_url: any = environment.api_url
 
-  constructor(private route: ActivatedRoute, private service: ServiceService) { }
+  constructor(private route: ActivatedRoute, private product: ProductService) { }
 
   ngOnInit(): void {
     this.isMobile = window.innerWidth <= 500 ? true : false
@@ -46,7 +48,7 @@ export class ShopComponent implements OnInit {
   }
 
   getCategory() {
-    this.service.getProduct().subscribe(
+    this.product.get().subscribe(
       response => {
         for (let [i, value] of response.entries()) {
           this.categoryArr.push(
@@ -65,7 +67,7 @@ export class ShopComponent implements OnInit {
 
   getProduct(category: any, isRandom: any) {
 
-    this.service.getProduct().subscribe(
+    this.product.get().subscribe(
       response => {
 
         let arr = []

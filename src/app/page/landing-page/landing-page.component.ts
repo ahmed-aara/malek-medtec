@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/app/services/product.service';
 import { ServiceService } from 'src/app/services/service.service';
 
 declare const UIkit: any, makeid: any
@@ -70,7 +71,7 @@ export class LandingPageComponent implements OnInit {
 
   productArr: any = []
 
-  constructor(private service: ServiceService) { }
+  constructor(private service: ServiceService, private product: ProductService) { }
 
   ngOnInit(): void {
     this.isMobile = window.innerWidth <= 500 ? true : false
@@ -87,7 +88,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   getProduct() {
-    this.service.getProduct().subscribe(
+    this.product.get().subscribe(
       response => {
 
         let arr = []

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
+import { ProductService } from 'src/app/services/product.service';
 import { ServiceService } from 'src/app/services/service.service';
 
 declare const UIkit: any, makeid: any
@@ -27,7 +28,9 @@ export class NavBarComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private service: ServiceService) { }
+    private product: ProductService,
+
+  ) { }
 
   ngOnInit(): void {
 
@@ -53,7 +56,8 @@ export class NavBarComponent implements OnInit {
   }
 
   getCategory() {
-    this.service.getProduct().subscribe(
+
+    this.product.get().subscribe(
       response => {
         for (let [i, value] of response.entries()) {
           this.categoryArr.push(
