@@ -1,1 +1,161 @@
-<p>product works!</p>
+<table *ngIf="!loading_" class="uk-table uk-table-justify uk-table-divider">
+    <thead>
+        <tr>
+            <th class="p-1 uk-table-shrink">Image</th>
+            <th class="p-1 uk-table-expand">Name</th>
+            <th class="p-1 uk-table-expand">Price</th>
+            <th class="p-1 uk-table-expand">Category</th>
+            <th class="p-1 uk-width-1-4">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of productArr" class="px-2 hover_">
+            <td class="p-1">
+                <div class="bg_">
+                    <img class="full_w full_h" [src]="img_url + item.img" alt="">
+                </div>
+            </td>
+            <td class="p-1 m-0">{{item.name}}</td>
+            <td class="p-1 m-0">{{item.price}} KWD</td>
+            <td class="p-1 m-0">{{item.category_name | titlecase}}</td>
+            <td class="p-1">
+
+                <!-- <button (click)="one(item._id, 'detail')" class="btn_ blue_ font_size_ mr-1"
+                    style="--padding: 5px 10px 4px; --size: 1rem;" href="">
+                    Detail
+                </button> -->
+
+                <button (click)="one(item.id, 'update')" class="btn_ green_ font_size_ mr-1"
+                    style="--padding: 5px 10px 4px; --size: 1rem;" href="">
+                    Update
+                </button>
+
+                <!-- <button (click)="active(item._id, 0)" *ngIf="item.active == 1" class="btn_ red_ font_size_"
+                    style="--padding: 5px 10px 4px; --size: 1rem;" href="">
+                    Delete
+                </button> -->
+
+                <!-- <button (click)="active(item._id, 1)" *ngIf="item.active == 0" class="btn_ dark_gray_ font_size_"
+                    style="--padding: 5px 10px 4px; --size: 1rem;" href="">
+                    Recovery
+                </button>  -->
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="modal-product" class="modal-navbar" uk-modal="esc-close: false; bg-close: false; container: false;">
+    <div class="uk-modal-dialog uk-modal-body modal_product">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <h2 class="uk-modal-title">{{update_setting ? 'Update' : 'Add'}} Product</h2>
+
+        <div class="uk-grid-small uk-child-width-1-1@l mt-2" uk-grid>
+
+            <!-- <div>
+                <div>
+                    <div *ngIf="!bg_.found_img && productData.img !== null" class="bg_">
+                        <img class="full_w full_h" [src]="img_url + productData.img" alt="">
+                    </div>
+
+                    <div *ngIf="bg_.found_img" class="bg_">
+                        <img class="full_w full_h" [src]="bg_.img_" alt="">
+                    </div>
+                </div>
+
+                <div class="js-upload cursor_ full_w mt-1" uk-form-custom>
+                    <input class="cursor_" ngModel [ngModelOptions]="{standalone: true}" #fileHeader type="file"
+                        id="file_1" (change)="onImageSelected($event)" required>
+
+                    <button class="btn_dashed_ uk-flex uk-flex-middle uk-flex-center full_w">
+                        <span uk-icon="icon: image; ratio: 1.1"></span>
+                        <p class="line_height font_size_ ml-1"
+                            style="--height: 0.5rem; --size: 1.2rem; margin-top: 4px !important;">Select Image</p>
+                    </button>
+
+                </div>
+
+                <div *ngIf="errorData.msg !== null">
+                    <p class="redC_ small_">{{errorData.msg}}</p>
+                </div>
+
+            </div> -->
+
+            <div>
+                <form [formGroup]="productForm" (submit)="update_setting? update() : add()">
+
+                    <div class="uk-grid-small uk-child-width-1-1@l" uk-grid>
+
+                        <div>
+                            <ng-select [items]="categoryArr" bindLabel="name" bindValue="id" class="full_w"
+                                formControlName="category_id" placeholder="Category *">
+                            </ng-select>
+                            <div *ngIf="f_product.category_id.touched && f_product.category_id.errors">
+                                <p *ngIf="f_product.category_id.errors && f_product.category_id.errors['required']"
+                                    class="redC_ small_">The Category
+                                    is
+                                    required.</p>
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <input class="uk-input" placeholder="Name *" type="text" formControlName="name">
+                            <div *ngIf="f_product.name.touched && f_product.name.errors">
+                                <p *ngIf="f_product.name.errors && f_product.name.errors['required']"
+                                    class="redC_ small_">The Name
+                                    is
+                                    required.</p>
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <input class="uk-input" placeholder="Price *" type="text" onkeypress="validate(event)"
+                                formControlName="price">
+                            <div *ngIf="f_product.price.touched && f_product.price.errors">
+                                <p *ngIf="f_product.price.errors && f_product.price.errors['required']"
+                                    class="redC_ small_">The Price of Product
+                                    is
+                                    required.</p>
+
+                                <p *ngIf="f_product.price.errors && f_product.price.errors['pattern']"
+                                    class="redC_ small_">The Price of product Must be Number </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <textarea class="uk-textarea" placeholder="Specification *" type="text" rows="5"
+                                formControlName="specification"></textarea>
+                            <div *ngIf="f_product.specification.touched && f_product.specification.errors">
+                                <p *ngIf="f_product.specification.errors && f_product.specification.errors['required']"
+                                    class="redC_ small_">The Specification of Product
+                                    is
+                                    required.</p>
+                            </div>
+                        </div>
+
+                        <!-- <div *ngIf="currentFile_Product">
+                            <div>
+                                <div class="progress_">
+                                    <div class="bar_" [style.width.%]="progress"></div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div>
+                            <button class="btn_ black_ font_size_ full_w" type="submit" [disabled]="productForm.invalid"
+                                style="--padding: 13px 35px 14px;
+                            --size: 1.2rem">{{update_setting ? 'Update' : 'Add'}}</button>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

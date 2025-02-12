@@ -48,7 +48,7 @@ export class ShopComponent implements OnInit {
   }
 
   getCategory() {
-    this.product.get().subscribe(
+    this.product.all().subscribe(
       response => {
         for (let [i, value] of response.entries()) {
           this.categoryArr.push(
@@ -67,7 +67,7 @@ export class ShopComponent implements OnInit {
 
   getProduct(category: any, isRandom: any) {
 
-    this.product.get().subscribe(
+    this.product.all().subscribe(
       response => {
 
         let arr = []

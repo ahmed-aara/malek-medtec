@@ -6,6 +6,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ import { ControlPanelComponent } from './admin/control-panel/control-panel.compo
     NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule
   ],
   providers: [
     // { provide: LocationStrategy, useClass: HashLocationStrategy }

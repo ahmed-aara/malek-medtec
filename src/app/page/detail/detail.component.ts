@@ -45,7 +45,7 @@ export class DetailComponent {
   }
 
   detail(id: any, scroll: any) {
-    this.product.get().subscribe(
+    this.product.all().subscribe(
       response => {
 
         let arr = []

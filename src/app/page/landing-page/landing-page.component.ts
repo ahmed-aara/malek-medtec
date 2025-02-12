@@ -90,7 +90,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   getProduct() {
-    this.product.get().subscribe(
+    this.product.all().subscribe(
       response => {
 
 

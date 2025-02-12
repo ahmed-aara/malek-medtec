@@ -6,25 +6,14 @@ import { environment } from 'src/environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class CategoryService {
 
-  private api: any = environment.api_url + 'api/product/'
+  private api: any = environment.api_url + 'api/category/'
 
   constructor(private http: HttpClient) { }
-
-  all(): Observable<any> {
-    return this.http.get(this.api + 'all')
-  }
 
   get(): Observable<any> {
     return this.http.get(this.api + 'get')
   }
 
-  one(id: string): Observable<any> {
-    return this.http.get(this.api + id)
-  }
-
-  update(id: string, data: any) {
-    return this.http.put(this.api + 'update/' + id, data)
-  }
 }
