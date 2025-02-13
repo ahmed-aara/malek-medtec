@@ -11,33 +11,55 @@
                     <h3 uk-scrollspy="cls: uk-animation-fade; delay: 300; repeat: false" class="f_Bold">{{
                         productData.name }}</h3>
 
+                    <h3 uk-scrollspy="cls: uk-animation-fade; delay: 350; repeat: false" class="py-1">
+                        Price: <span class="f_Bold">{{productData.price * quantity }} KWD</span> </h3>
+
                     <div uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false"
                         class="uk-flex uk-flex-middle uk-flex-left">
                         <img width="20px" src="assets/img/vector/check.svg" alt="">
                         <p class="f_Bold px-1 greenC_">Available in store</p>
                     </div>
 
-                    <div class="my-1">
+                    <h5 class="my-1 f_SemiBold" uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false">
+                        Quantity</h5>
 
-                        <a uk-scrollspy="cls: uk-animation-fade; delay: 450; repeat: false" [href]="contactLink"
-                            target="_blank" style="--bg: #0082BD;" class="mr-1 a_decoration">
-                            <div class="uk-flex uk-flex-middle uk-flex-center">
-                                <img src="assets/img/vector/phone_white.svg" alt="">
-                                <p class="whiteC_ f_Bold a_decoration ml-1">Call Us</p>
-                            </div>
-                        </a>
+                    <div class="quantity_box uk-flex uk-flex-middle uk-flex-between px-2 mb-2"
+                        uk-scrollspy="cls: uk-animation-fade; delay: 400; repeat: false">
 
-                        <a uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: false" [href]="askProductLink"
-                            target="_blank" style="--bg: #27AE60;" class="a_decoration">
+                        <div class="minus sign cursor" (click)="minus()">
+                            <img width="10px" src="assets/img/vector/minus.svg" alt="">
+                        </div>
+
+                        <div>
+                            <p class="f_SemiBold font_size_">
+                                {{quantity}}</p>
+                        </div>
+
+                        <div class="plus sign cursor" (click)="plus()">
+                            <img width="10px" src="assets/img/vector/plus.svg" alt="">
+                        </div>
+
+                    </div>
+
+                    <div class="my-1 uk-flex uk-flex-middle">
+
+                        <button uk-scrollspy="cls: uk-animation-fade; delay: 450; repeat: false" target="_blank"
+                            (click)="addCart(true)" style="--bg: #0082BD;" class="mr-1 a_decoration cursor">
                             <div class="uk-flex uk-flex-middle uk-flex-center">
                                 <img src="assets/img/vector/bag_white.svg" alt="">
-                                <p class="whiteC_ f_Bold a_decoration ml-1">Get the product</p>
+                                <p class="whiteC_ f_Bold a_decoration ml-1">Add Cart</p>
                             </div>
+                        </button>
+
+                        <a uk-scrollspy="cls: uk-animation-fade; delay: 500; repeat: false" [href]="askProductLink"
+                            target="_blank" style="--bg: #27AE60;"
+                            class="a_decoration uk-flex uk-flex-middle uk-flex-center cursor">
+                            <p class="whiteC_ f_Bold a_decoration">Buy Now</p>
                         </a>
 
                     </div>
 
-                    <h3 uk-scrollspy="cls: uk-animation-fade; delay: 550; repeat: false" class="f_Bold mb-1">
+                    <h3 uk-scrollspy="cls: uk-animation-fade; delay: 550; repeat: false" class="f_Bold my-1">
                         Specification</h3>
                     <p uk-scrollspy="cls: uk-animation-fade; delay: 600; repeat: false"
                         class="white_space nescafeC_ specification_">{{ productData.specification }}</p>

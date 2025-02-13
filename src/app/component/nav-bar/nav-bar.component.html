@@ -43,7 +43,8 @@
 
                                     <div *ngFor="let category of categoryArr; let i = index"
                                         [ngStyle]="{'border-right': i == 3 ? '' : '0.5px solid #e6e6e6' }">
-                                        <h6 class="f_SemiBold blueC_ mb-1">{{category.title | titlecase | convertToLink : '-' : ' '}}</h6>
+                                        <h6 class="f_SemiBold blueC_ mb-1">{{category.title | titlecase | convertToLink
+                                            : '-' : ' '}}</h6>
 
                                         <div class="uk-grid-collapse ml-1"
                                             [ngClass]="i == 3 || i == 2 || i == 1 ? 'uk-child-width-1-1@l' : 'uk-child-width-1-2@l'"
@@ -77,14 +78,14 @@
                 <div class="uk-navbar-right">
 
                     <div class="full_w full_h uk-flex uk-flex-center uk-flex-middle">
-                        <a uk-scrollspy="cls: uk-animation-fade; delay: 600; repeat: false" href="tel:+96550409894"
-                            class="btn_a blueBG_ px-3 py-2">
-
-                            <div  class=" uk-flex uk-flex-middle uk-flex-center">
-                                <span uk-icon="icon: receiver; ratio: 1.2" class="whiteC_ mr-1"></span>
-                                <p class="whiteC_ f_Medium">Call Us Now</p>
+                        <a uk-scrollspy="cls: uk-animation-fade; delay: 600; repeat: false" class="btn_cart"
+                            uk-toggle="target: #offcanvas-cart">
+                            <img width="26" src="assets/img/vector/bag_black.svg" alt="">
+                            <div class="count_ uk-flex uk-flex-center uk-flex-middle">
+                                <p class="f_Medium whiteC_">
+                                    {{cart_count$ | async | number}}
+                                </p>
                             </div>
-
                         </a>
                     </div>
 
@@ -150,6 +151,88 @@
             </div>
 
         </div>
+
+    </div>
+</div>
+
+<div id="offcanvas-cart" uk-offcanvas="flip: true; overlay: true">
+    <div class="uk-offcanvas-bar offcanvas-cart whiteBG_">
+
+        <button class="uk-offcanvas-close blackC_" type="button" uk-close></button>
+
+        <h3 class="f_Bold mb-2">Cart</h3>
+
+        <div class="uk-grid-small uk-child-width-1-1@l" uk-grid>
+
+            <div *ngFor="let item of cartArr$ | async; let i = index">
+                <div class="card_ ">
+
+                    <div class="uk-flex">
+
+                        <div class="bg_ full_">
+                            <a routerLink="/detail/{{item._id}}" (click)="optionOffcanvas('offcanvas-cart', false)">
+                                <img class="full_w full_h" [src]="img_url + item.img" alt="">
+                            </a>
+                        </div>
+
+                        <div class="ml-1 uk-width-expand">
+
+                            <div class="uk-flex uk-flex-middle uk-flex-between">
+
+                                <div>
+
+                                    <h5 class="f_SemiBold line_height" style="--height: 1.2rem">{{item.name}}</h5>
+                                    <p class="grayC_ line_height mt-1" style="--height: 1.2rem">Quantity: <span
+                                            class="blackC_ f_SemiBold">{{item.quantity}}</span></p>
+                                    <p class="grayC_ line_height" style="--height: 1.2rem">Total: <span
+                                            class="blackC_ f_SemiBold">{{item.total |number: '1.2-2'}} KWD</span></p>
+
+                                    <div class="quantity_box uk-flex uk-flex-middle uk-flex-between px-2">
+
+                                        <div class="minus sign cursor" (click)="minus(item)">
+                                            <img width="10px" src="assets/img/vector/minus.svg" alt="">
+                                        </div>
+
+                                        <div>
+                                            <p class="f_SemiBold font_size_"
+                                                style="--size: 1.5rem; margin-top: 5px !important;">
+                                                {{item.quantity}}</p>
+                                        </div>
+
+                                        <div class="plus sign cursor" (click)="plus(item)">
+                                            <img width="10px" src="assets/img/vector/plus.svg" alt="">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div>
+                                    <span (click)="deleteCart(i)" class="redC_ cursor"
+                                        uk-icon="icon: trash; ratio: 1.2"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="line_ mt-2"></div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="uk-flex uk-flex-between my-1">
+            <h4 class="grayC_">Total</h4>
+            <h4 class="f_Medium">{{total$| async | number: '1.2-2'}} KWD</h4>
+        </div>
+
+        <a class="btn_ blue_ font_size_ mt-1 text-center f_SemiBold"
+            style="--padding: 6px 20px; --size: 1rem; display: block;" routerLink="/checkout"
+            (click)="optionOffcanvas('offcanvas-cart', false)">Go To Checkout</a>
 
     </div>
 </div>

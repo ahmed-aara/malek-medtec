@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { ServiceService } from 'src/app/services/service.service';
 import { environment } from 'src/environments/environment.prod';
+import { Store } from '@ngrx/store';
+import { cart, total } from 'src/app/redux/data.actions';
 
 declare const UIkit: any
 
@@ -21,6 +23,7 @@ export class DetailComponent {
   askProductLink: any
   contactLink: any
   img_url: any = environment.api_url
+  quantity: any = 1
 
   //Array
   productArr: any = []
@@ -29,12 +32,18 @@ export class DetailComponent {
   productData: any = {
     name: null,
     img: null,
-    specification: null
+    specification: null,
+    price: null,
   }
 
   loaded_: any = false
 
-  constructor(private product: ProductService, private service: ServiceService, private activatedRoute: ActivatedRoute) { }
+  constructor(private product: ProductService,
+    private service: ServiceService,
+    private activatedRoute: ActivatedRoute,
+    private store: Store,
+
+  ) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -65,7 +74,8 @@ export class DetailComponent {
         this.productData = {
           name: data.name,
           img: data.img,
-          specification: data.specification
+          specification: data.specification,
+          price: data.price,
         }
 
         this.reltaedProduct(response, data.super_category, data.category)
@@ -103,6 +113,59 @@ export class DetailComponent {
     data = shuffle(data);
 
     this.productArr = data.slice(0, 10)
+  }
+
+  minus() {
+    if (this.quantity > 1) {
+      this.quantity -= 1
+    }
+  }
+
+  plus() {
+    if (this.quantity < 10) {
+      this.quantity += 1
+    }
+  }
+
+  addCart(open: any) {
+    let cartData: any = localStorage.getItem('cart')
+    let cartArr = JSON.parse(cartData)
+
+    let isExist = cartArr.some((e: any) => e._id === this.product_id)
+
+    if (isExist) this.notification('You are already Added in Cart')
+    else {
+
+      let i = {
+        name: this.productData.name,
+        quantity: this.quantity,
+        total: Number(this.productData.price) * this.quantity,
+        price: Number(this.productData.price),
+        img: this.productData.img.split('/')[(this.productData.img.split('/').length) - 1],
+        _id: this.product_id,
+      }
+
+      cartArr.push(i)
+      localStorage.setItem('cart', JSON.stringify(cartArr))
+      open ? UIkit.offcanvas(`#offcanvas-cart`).show() : null
+
+      let updatedData: any = localStorage.getItem('cart')
+
+      const sum = JSON.parse(updatedData).reduce((accumulator: any, object: any) => {
+        return accumulator + Number(object.total);
+      }, 0);
+
+      this.store.dispatch(cart({ data: { cart: JSON.parse(updatedData) } }));
+      this.store.dispatch(total({ data: { total: sum } }));
+    }
+  }
+
+  notification(message: any) {
+    UIkit.notification({
+      message: '<div class="full_left_"><h5 class="m-0 pl-2 whiteC_ f_Medium white_space line_height mt-1" style="--height: 1.5rem">' + message + '</h5></div>',
+      pos: 'bottom-right',
+      timeout: 4000
+    });
   }
 
 }

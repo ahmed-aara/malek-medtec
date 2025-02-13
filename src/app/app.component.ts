@@ -37,6 +37,9 @@ export class AppComponent implements OnInit {
       }
     });
 
+    if (localStorage.getItem('cart') === null) {
+      localStorage.setItem('cart', '[]')
+    }
 
   }
 

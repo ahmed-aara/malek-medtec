@@ -1,13 +1,14 @@
-.sec_detail a {
-    padding: 8px 15px;
+.sec_detail a,
+.sec_detail button {
+    padding: 0 15px;
+    height: 40px;
     background-color: var(--bg);
-    display: inline-block;
     border-radius: 0px;
 }
 
-.sec_detail a img {
+.sec_detail a img,
+.sec_detail button img {
     width: 18px;
-    margin-left: 5px;
 }
 
 .sec_detail .specification_ {
@@ -69,6 +70,21 @@
     z-index: 1;
 }
 
+.sec_detail .quantity_box {
+    width: 120px;
+    height: 40px;
+    box-sizing: border-box;
+    border: 1px solid #c1c1c1;
+}
+
+.sec_detail .quantity_box .sign img {
+    transition: 0.1s;
+}
+
+.sec_detail .quantity_box .sign:hover img {
+    width: 15px;
+}
+
 /*responsive*********************************************/
 
 /*
@@ -88,43 +104,32 @@
 13. 400px
 */
 
-@media only screen and (max-width: 1920px) {
-}
+@media only screen and (max-width: 1920px) {}
 
-@media only screen and (max-width: 1600px) {
-}
+@media only screen and (max-width: 1600px) {}
 
-@media only screen and (max-width: 1440px) {
-}
+@media only screen and (max-width: 1440px) {}
 
-@media only screen and (max-width: 1380px) {
-}
+@media only screen and (max-width: 1380px) {}
 
-@media only screen and (max-width: 1280px) {
-}
+@media only screen and (max-width: 1280px) {}
 
-@media only screen and (max-width: 1199px) {
-}
+@media only screen and (max-width: 1199px) {}
 
-@media only screen and (max-width: 1100px) {
-}
+@media only screen and (max-width: 1100px) {}
 
-@media only screen and (max-width: 1024px) {
-}
+@media only screen and (max-width: 1024px) {}
 
-@media only screen and (max-width: 991px) {
-}
+@media only screen and (max-width: 991px) {}
 
-@media only screen and (max-width: 959px) {
-}
+@media only screen and (max-width: 959px) {}
 
-@media only screen and (max-width: 880px) {
-}
+@media only screen and (max-width: 880px) {}
 
-@media only screen and (max-width: 768px) {
-}
+@media only screen and (max-width: 768px) {}
 
 @media only screen and (max-width: 767px) {
+
     //
     .sec_detail .product_box {
         flex-direction: column;
@@ -142,17 +147,12 @@
     }
 }
 
-@media only screen and (max-width: 575px) {
-}
+@media only screen and (max-width: 575px) {}
 
-@media only screen and (max-width: 539px) {
-}
+@media only screen and (max-width: 539px) {}
 
-@media only screen and (max-width: 480px) {
-}
+@media only screen and (max-width: 480px) {}
 
-@media only screen and (max-width: 479px) {
-}
+@media only screen and (max-width: 479px) {}
 
-@media only screen and (max-width: 400px) {
-}
+@media only screen and (max-width: 400px) {}

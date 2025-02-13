@@ -23,6 +23,8 @@ import { DetailComponent } from './page/detail/detail.component';
 import { ProductComponent } from './page/dashboard/product/product.component';
 import { LoginDashboardComponent } from './admin/login-dashboard/login-dashboard.component';
 import { ControlPanelComponent } from './admin/control-panel/control-panel.component';
+import { StoreModule } from '@ngrx/store';
+import { cartCountReducer, cartReducer, totalReducer } from './redux/data.reducers';
 
 @NgModule({
   declarations: [
@@ -48,10 +50,17 @@ import { ControlPanelComponent } from './admin/control-panel/control-panel.compo
     NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    StoreModule.forRoot(
+      {
+        cart: cartReducer,
+        total: totalReducer,
+        cart_count: cartCountReducer,
+      }
+    ),
   ],
   providers: [
-    // { provide: LocationStrategy, useClass: HashLocationStrategy }
+    // { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]
 })
