@@ -25,6 +25,7 @@ import { LoginDashboardComponent } from './admin/login-dashboard/login-dashboard
 import { ControlPanelComponent } from './admin/control-panel/control-panel.component';
 import { StoreModule } from '@ngrx/store';
 import { cartCountReducer, cartReducer, totalReducer } from './redux/data.reducers';
+import { CartComponent } from './page/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { cartCountReducer, cartReducer, totalReducer } from './redux/data.reduce
     DetailComponent,
     ProductComponent,
     LoginDashboardComponent,
-    ControlPanelComponent
+    ControlPanelComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

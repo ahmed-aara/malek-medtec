@@ -11,6 +11,7 @@ import { IsNotLoginService } from './services/auth-guard/is-not-login.service';
 import { IsLoginService } from './services/auth-guard/is-login.service';
 import { IsAdminService } from './services/auth-guard/is-admin.service';
 import { ProductComponent } from './admin/product/product.component';
+import { CartComponent } from './page/cart/cart.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactUsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'product/:id', component: DetailComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'admin/login', component: LoginDashboardComponent, canActivate: [IsNotLoginService] },
   {
     path: 'admin', component: ControlPanelComponent, canActivate: [IsLoginService, IsAdminService],

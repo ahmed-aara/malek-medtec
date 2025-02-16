@@ -1,0 +1,110 @@
+<section class="sec_cart py-2">
+
+    <div class="uk-container">
+
+        <div class="uk-grid-medium" uk-grid>
+
+            <div class="uk-width-expand">
+
+                <h3 class="f_Bold mb-2">Cart</h3>
+
+                <div class="uk-grid-small uk-child-width-1-1@l" uk-grid>
+
+                    <div *ngFor="let item of cartArr$ | async; let i = index">
+                        <div class="card_cart">
+
+                            <div class="uk-flex">
+
+                                <div class="bg_ full_">
+                                    <a routerLink="/detail/{{item._id}}">
+                                        <img class="full_w full_h" [src]="img_url + item.img" alt="">
+                                    </a>
+                                </div>
+
+                                <div class="ml-1 uk-width-expand">
+
+                                    <div class="uk-flex uk-flex-middle uk-flex-between">
+
+                                        <div>
+
+                                            <h5 class="f_SemiBold line_height" style="--height: 1.2rem">{{item.name}}
+                                            </h5>
+                                            <p class="grayC_ line_height mt-1" style="--height: 1.2rem">Quantity: <span
+                                                    class="blackC_ f_SemiBold">{{item.quantity}}</span></p>
+                                            <p class="grayC_ line_height" style="--height: 1.2rem">Total: <span
+                                                    class="blackC_ f_SemiBold">{{item.total |number: '1.2-2'}}
+                                                    KWD</span></p>
+
+                                            <div class="quantity_box uk-flex uk-flex-middle uk-flex-between px-2">
+
+                                                <div class="minus sign cursor" (click)="minus(item)">
+                                                    <img width="8px" src="assets/img/vector/minus.svg" alt="">
+                                                </div>
+
+                                                <div>
+                                                    <p class="f_SemiBold font_size_">
+                                                        {{item.quantity}}</p>
+                                                </div>
+
+                                                <div class="plus sign cursor" (click)="plus(item)">
+                                                    <img width="8px" src="assets/img/vector/plus.svg" alt="">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div>
+                                            <span (click)="deleteCart(i)" class="redC_ cursor"
+                                                uk-icon="icon: trash; ratio: 1.2"></span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="line_ mt-2"></div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="uk-width-1-4">
+
+                <div class="card_ p-2">
+
+                    <h5 class="f_SemiBold">ORDER SUMMARY</h5>
+
+                    <div class="uk-flex uk-flex-between mt-2">
+
+                        <h6 class="sub_title">SUBTOTAL</h6>
+                        <h6 class="blackC_ f_Bold">{{total$| async | number: '1.2-2'}} KWD</h6>
+
+                    </div>
+
+                    <div class="uk-flex uk-flex-top my-2">
+                        <span class="blueC_ icon_" uk-icon="icon: info; ratio: 0.6"></span>
+                        <h6 class="blueC_ tax_ ml-1">Taxes and shipping calculated at checkout</h6>
+                    </div>
+
+                    <h6 class="f_SemiBold">Order note (optional)</h6>
+
+                    <textarea class="uk-textarea mt-1" rows="3"></textarea>
+
+                    <a class="btn_ blue_ full_w mt-2 text-center f_SemiBold" routerLink="/contact"
+                        style="--padding: 8px 0px; --size: 1rem; font-size: 0.9rem;">Checkout</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
