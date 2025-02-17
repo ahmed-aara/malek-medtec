@@ -7,12 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { AngularPhoneNumberInput } from 'angular-phone-number-input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './page/landing-page/landing-page.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
-import { FooterComponent } from './component/footer/footer.component';
 import { IncludePipe } from './pipe/include.pipe';
 import { ShopComponent } from './page/shop/shop.component';
 import { ConvertToLinkPipe } from './pipe/convert-to-link.pipe';
@@ -26,6 +26,8 @@ import { ControlPanelComponent } from './admin/control-panel/control-panel.compo
 import { StoreModule } from '@ngrx/store';
 import { cartCountReducer, cartReducer, totalReducer } from './redux/data.reducers';
 import { CartComponent } from './page/cart/cart.component';
+import { CheckoutComponent } from './page/checkout/checkout.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -43,13 +45,15 @@ import { CartComponent } from './page/cart/cart.component';
     ProductComponent,
     LoginDashboardComponent,
     ControlPanelComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgSelectModule,
+    AngularPhoneNumberInput,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,

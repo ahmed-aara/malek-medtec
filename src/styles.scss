@@ -84,3 +84,36 @@ html {
 ::selection {
     background-color: #0082BD;
 }
+
+.ng-pristine .wrap {
+    box-sizing: border-box !important;
+    height: 40px !important;
+    border-radius: 0px !important;
+    transition: 0.5s
+}
+
+.ng-pristine .wrap.border {
+    border: 1px solid #b1b1b1;
+}
+
+.ng-pristine .wrap.active {
+    border: 1px solid #0082bd !important;
+}
+
+.ng-pristine .wrap .flag {
+    width: 38px !important;
+    margin: 0 !important;
+    margin-left: 0rem !important;
+}
+
+.ng-pristine .wrap .flag svg {
+    margin: 0 !important;
+}
+
+.ng-pristine .wrap svg {
+    margin-left: 1rem !important;
+}
+
+.ng-pristine .text {
+    margin-left: 1rem !important;
+}

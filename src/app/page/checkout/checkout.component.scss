@@ -1,0 +1,39 @@
+.sec_checkout .card_ {
+    background-color: #F5F5F5;
+}
+
+.sec_checkout .card_ .sub_title {
+    color: #AFAFAF !important;
+}
+
+.sec_checkout .card_cart .bg_ {
+    position: relative;
+    width: 70px;
+    overflow: hidden;
+}
+
+.sec_checkout .card_cart .bg_ img {
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+}
+
+.sec_checkout .card_cart .line_ {
+    width: 100%;
+    height: 1px;
+    background-color: #d9d9d9;
+}
+
+.sec_checkout .payment_section .btn_payment {
+    background-color: rebeccapurple;
+    width: 100%;
+    height: 4rem;
+    background-color: transparent;
+    border: 1px solid #bcbcbc;
+    padding: 0px 20px;
+    cursor: pointer;
+}
+
+.sec_checkout .payment_section .btn_payment.active {
+    border-color: #333;
+}

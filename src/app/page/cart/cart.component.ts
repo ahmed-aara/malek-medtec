@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { cart, cart_count, total } from 'src/app/redux/data.actions';
+import { cart, total } from 'src/app/redux/data.actions';
 import { Store, select } from '@ngrx/store';
 import { environment } from 'src/environments/environment.prod';
 import { Router } from '@angular/router';
@@ -123,5 +123,6 @@ export class CartComponent implements OnInit {
     this.store.dispatch(total({ data: { total: sum } }));
     localStorage.setItem('cart', JSON.stringify(data))
   }
+
 
 }
