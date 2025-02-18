@@ -13,6 +13,7 @@ import { IsAdminService } from './services/auth-guard/is-admin.service';
 import { ProductComponent } from './admin/product/product.component';
 import { CartComponent } from './page/cart/cart.component';
 import { CheckoutComponent } from './page/checkout/checkout.component';
+import { LoginComponent } from './page/login/login.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'product/:id', component: DetailComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'login', component: LoginComponent, canActivate: [IsNotLoginService] },
   { path: 'admin/login', component: LoginDashboardComponent, canActivate: [IsNotLoginService] },
   {
     path: 'admin', component: ControlPanelComponent, canActivate: [IsLoginService, IsAdminService],

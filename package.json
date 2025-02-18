@@ -23,6 +23,7 @@
     "angular-phone-number-input": "^1.0.7",
     "country-state-city": "^3.2.1",
     "intl-tel-input": "^19.5.7",
+    "ngx-cookie-service": "^19.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "uikit": "^3.17.11",

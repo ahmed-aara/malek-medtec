@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { AngularPhoneNumberInput } from 'angular-phone-number-input';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ import { cartCountReducer, cartReducer, totalReducer } from './redux/data.reduce
 import { CartComponent } from './page/cart/cart.component';
 import { CheckoutComponent } from './page/checkout/checkout.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { LoginComponent } from './page/login/login.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { FooterComponent } from './component/footer/footer.component';
     ControlPanelComponent,
     CartComponent,
     CheckoutComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import { FooterComponent } from './component/footer/footer.component';
     ),
   ],
   providers: [
+    CookieService
     // { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]

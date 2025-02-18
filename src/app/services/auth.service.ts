@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { TokenPayload, TokenReponse, UserDetail } from '../Modal/User';
 import { map } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +16,17 @@ export class AuthService {
 
   private token: any = ''
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) { }
 
   private saveToken(token: string): void {
-    localStorage.setItem('token', token)
-    this.token
+    const expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() + 7);
+    this.cookieService.set('token', token, expireDate);
   }
 
   private getToken(): string {
     if (!this.token) {
-      this.token = localStorage.getItem('token')
+      this.token = this.cookieService.get('token');
     }
     return this.token
   }
@@ -68,7 +70,7 @@ export class AuthService {
 
   }
 
-  public login(data:any): Observable<any> {
+  public login(data: any): Observable<any> {
     const base = this.http.post(this.api + 'login', data, { headers: { 'Content-Type': 'application/json' } })
 
     const request = base.pipe(
