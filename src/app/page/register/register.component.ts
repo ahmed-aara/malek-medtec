@@ -3,11 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss'
 })
-export class LoginComponent {
+export class RegisterComponent {
 
   // Variables
   error_box = {
@@ -17,8 +17,11 @@ export class LoginComponent {
 
   //Form
   form = new FormGroup({
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
+    confirm_password: new FormControl('', Validators.required)
   });
 
   constructor(private auth: AuthService) { }
@@ -26,7 +29,7 @@ export class LoginComponent {
   submit() {
     console.log(this.form.value);
 
-    this.auth.login(this.form.value).subscribe(
+    this.auth.register(this.form.value).subscribe(
       response => {
         // localStorage.setItem('admin', 'true')
         // this.router.navigateByUrl('/admin/product')
@@ -42,4 +45,5 @@ export class LoginComponent {
       }
     )
   }
+
 }

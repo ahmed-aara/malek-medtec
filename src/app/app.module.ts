@@ -30,6 +30,7 @@ import { CartComponent } from './page/cart/cart.component';
 import { CheckoutComponent } from './page/checkout/checkout.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { LoginComponent } from './page/login/login.component';
+import { RegisterComponent } from './page/register/register.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { LoginComponent } from './page/login/login.component';
     CartComponent,
     CheckoutComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

@@ -52,7 +52,7 @@ export class AuthService {
     }
   }
 
-  public register(user: TokenPayload): Observable<any> {
+  public register(user: any): Observable<any> {
 
     const base = this.http.post(this.api + 'register',
       user, { headers: { 'Content-Type': 'application/json' } });

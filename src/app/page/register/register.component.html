@@ -1,13 +1,23 @@
-<section class="sec_login uk-flex uk-flex-center uk-flex-middle">
+<section class="sec_register uk-flex uk-flex-center uk-flex-middle">
 
     <div class="uk-width-1-4">
         <div class="card_ p-2">
-            <h4 class="f_SemiBold">Login</h4>
+            <h4 class="f_SemiBold">Create new account</h4>
             <h5>to get started</h5>
 
             <form [formGroup]="form" class="mt-2" (ngSubmit)="submit()">
 
                 <div class="uk-grid-small uk-child-width-1-1@l" uk-grid>
+
+                    <div class="uk-width-1-2">
+                        <h6>First Name</h6>
+                        <input class="uk-input" type="email" formControlName="firstname">
+                    </div>
+
+                    <div class="uk-width-1-2">
+                        <h6>Last Name</h6>
+                        <input class="uk-input" type="email" formControlName="lastname">
+                    </div>
 
                     <div>
                         <h6>Email</h6>
@@ -20,24 +30,28 @@
                     </div>
 
                     <div>
+                        <h6>Confirm Password</h6>
+                        <input class="uk-input" type="password" formControlName="confirm_password">
+                    </div>
+
+                    <div>
                         <button [disabled]="form.invalid" class="btn_ blue_ font_size_ full_w f_SemiBold" type="submit">
-                            Login
+                            Create an account
                         </button>
                     </div>
 
                     <div>
                         <h5 *ngIf="error_box.status" class="redC_">Error: {{error_box.msg}}</h5>
                     </div>
-
                 </div>
 
             </form>
 
             <div class="uk-flex uk-flex-middle uk-flex-center mt-2">
 
-                <h6>New User?</h6>
+                <h6>I have account!</h6>
                 <a routerLink="/register">
-                    <h6 class="f_SemiBold blueC_">&nbsp;Register</h6>
+                    <h6 class="f_SemiBold blueC_">&nbsp;Login</h6>
                 </a>
 
             </div>
