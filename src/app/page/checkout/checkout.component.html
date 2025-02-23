@@ -34,17 +34,15 @@
 
                         <div [ngClass]="states.length > 0? 'uk-width-1-2' : 'uk-width-1-1'">
                             <h6>Country <span class="redC_">*</span></h6>
-                            <ng-select [items]="countries" bindLabel="name" bindValue="isoCode"
-                                [(ngModel)]="selectedCountry" [ngModelOptions]="{standalone: true}"
-                                (change)="onCountryChange()">
+                            <ng-select [items]="countries" bindLabel="name" [(ngModel)]="selectedCountry"
+                                [ngModelOptions]="{standalone: true}" (change)="onCountryChange()">
                             </ng-select>
                         </div>
 
                         <div *ngIf="states.length > 0">
                             <h6>State <span class="redC_">*</span></h6>
-                            <ng-select [items]="states" bindLabel="name" bindValue="isoCode" [(ngModel)]="selectedState"
-                                [ngModelOptions]="{standalone: true}" (change)="onStateChange()"
-                                placeholder="Select a state">
+                            <ng-select [items]="states" bindLabel="name" [(ngModel)]="selectedState"
+                                [ngModelOptions]="{standalone: true}" placeholder="Select a state">
                             </ng-select>
                         </div>
 
@@ -108,7 +106,10 @@
 
                     <div class="card_ p-1">
 
-                        <h5 class="f_SemiBold mb-1">Your Cart</h5>
+                        <div class="uk-flex uk-flex-top uk-flex-between">
+                            <h5 class="f_SemiBold mb-1">Your Cart</h5>
+                            <a routerLink="/cart" class="blueC_">Back to cart</a>
+                        </div>
 
                         <div *ngFor="let item of cartArr$ | async; let i = index">
                             <div class="card_cart">
@@ -149,9 +150,6 @@
 
                             </div>
                         </div>
-
-                        <a class="btn_ a_ blue_ full_w mt-2 text-center f_SemiBold" routerLink="/cart">Back to Cart</a>
-
                     </div>
 
                     <div class="card_ p-1 mt-2">

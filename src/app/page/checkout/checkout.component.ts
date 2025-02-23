@@ -7,9 +7,7 @@ import { cart, total } from 'src/app/redux/data.actions';
 import { environment } from 'src/environments/environment.prod';
 import { Store, select } from '@ngrx/store';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
-import { Country, State, City } from 'country-state-city';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -24,9 +22,8 @@ export class CheckoutComponent implements OnInit {
   //Variable
   img_url: any = environment.api_url
   isValidNumber: boolean | null = null;
-  selectedCountry: string = '';
-  selectedState: string = '';
-  selectedCity: string = '';
+  selectedCountry: any = '';
+  selectedState: any = '';
   paymentType: string = 'online-payment';
   user_id: string = '';
 
@@ -47,7 +44,8 @@ export class CheckoutComponent implements OnInit {
     private store: Store<{ cart: any, total: any }>,
     private locationService: LocationService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     this.cartArr$ = store.pipe(select('cart'));
     this.total$ = store.pipe(select('total'));
@@ -65,6 +63,32 @@ export class CheckoutComponent implements OnInit {
     this.store.dispatch(cart({ data: { cart: JSON.parse(cartData) } }));
     this.store.dispatch(total({ data: { total: sum } }));
     this.getUserData()
+
+    this.route.queryParams.subscribe((params: any) => {
+
+      let country_data = this.locationService.getCountries().find((item) => {
+        return item.name === params.country
+      })
+
+      this.selectedCountry = country_data
+      this.states = this.locationService.getStates(this.selectedCountry.isoCode);
+
+      let states_data = this.locationService.getStates(this.selectedCountry.isoCode).find((item) => {
+        return item.name === params.state
+      });
+
+      this.selectedState = states_data
+
+      this.paymentType = params.type_payment
+
+      this.form.patchValue({
+        firstname: params.first_name,
+        lastname: params.last_name,
+        address: params.address,
+        phoneNumber: params.phone_number,
+        email: params.email,
+      });
+    });
   }
 
   getUserData() {
@@ -81,8 +105,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   validatePhoneNumber() {
-    console.log('afsdjhgasd')
-    console.log(this.form.get('phoneNumber')?.value)
     const phoneNumber = this.form.get('phoneNumber')?.value;
     if (phoneNumber) {
       const parsedNumber = libphonenumber.parsePhoneNumberFromString(phoneNumber);
@@ -97,13 +119,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   onCountryChange() {
-    this.states = this.locationService.getStates(this.selectedCountry);
+    this.states = this.locationService.getStates(this.selectedCountry.isoCode);
     this.selectedState = '';
-    this.selectedCity = '';
-  }
-
-  onStateChange() {
-    this.selectedCity = '';
   }
 
   selectPayment(type: string) {
@@ -111,7 +128,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkout() {
-    console.log('ahmed')
     if (this.user_id) {
       console.log('pay')
     } else {

@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
   // Variables
   error_box = {
     msg: '',
     status: false
   }
+
+  fullQuery: any;
 
   //Form
   form = new FormGroup({
@@ -24,7 +27,14 @@ export class RegisterComponent {
     confirm_password: new FormControl('', Validators.required)
   });
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private route: ActivatedRoute,
+        private router: Router
+  ) { }
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.fullQuery = params
+    });
+  }
 
   submit() {
     console.log(this.form.value);
@@ -33,6 +43,12 @@ export class RegisterComponent {
       response => {
         // localStorage.setItem('admin', 'true')
         // this.router.navigateByUrl('/admin/product')
+
+        if (this.fullQuery.first_name) {
+          this.router.navigate(['/checkout'], {
+            queryParams: this.fullQuery
+          });
+        }
 
         this.error_box = {
           msg: '',
