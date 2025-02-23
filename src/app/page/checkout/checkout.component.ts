@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
 import { cart, total } from 'src/app/redux/data.actions';
 import { environment } from 'src/environments/environment.prod';
 import { Store, select } from '@ngrx/store';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
+import { Country, State, City } from 'country-state-city';
 
 @Component({
   selector: 'app-checkout',
@@ -25,6 +28,7 @@ export class CheckoutComponent implements OnInit {
   selectedState: string = '';
   selectedCity: string = '';
   paymentType: string = 'online-payment';
+  user_id: string = '';
 
   // Array
   countries: any[] = [];
@@ -41,7 +45,9 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private store: Store<{ cart: any, total: any }>,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private auth: AuthService,
+    private router: Router
   ) {
     this.cartArr$ = store.pipe(select('cart'));
     this.total$ = store.pipe(select('total'));
@@ -58,6 +64,20 @@ export class CheckoutComponent implements OnInit {
 
     this.store.dispatch(cart({ data: { cart: JSON.parse(cartData) } }));
     this.store.dispatch(total({ data: { total: sum } }));
+    this.getUserData()
+  }
+
+  getUserData() {
+    if (this.auth.isLoggedIn()) {
+      this.auth.profile().subscribe(
+        response => {
+          this.user_id = response.user.id
+        },
+        err => {
+          console.log(err)
+        }
+      )
+    }
   }
 
   validatePhoneNumber() {
@@ -87,8 +107,37 @@ export class CheckoutComponent implements OnInit {
   }
 
   selectPayment(type: string) {
-    console.log(type)
     this.paymentType = type;
+  }
+
+  checkout() {
+    console.log('ahmed')
+    if (this.user_id) {
+      console.log('pay')
+    } else {
+
+      let country_data = this.locationService.getCountries().find((item) => {
+        return item.isoCode === this.selectedCountry
+      })
+
+      let states_data = this.locationService.getStates(this.selectedCountry).find((item) => {
+        return item.isoCode === this.selectedState
+      });
+
+      this.router.navigate(['/login'], {
+        queryParams: {
+          first_name: this.form.value.firstname,
+          last_name: this.form.value.lastname,
+          email: this.form.value.email,
+          address: this.form.value.address,
+          country: country_data && country_data?.name,
+          state: states_data && states_data?.name,
+          phone_number: this.form.value.phoneNumber,
+          type_payment: this.paymentType,
+        }
+      });
+
+    }
   }
 
 }

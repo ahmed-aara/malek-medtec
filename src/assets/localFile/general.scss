@@ -19,7 +19,7 @@
 
 .uk-input:focus,
 .uk-textarea:focus {
-    background-color: #f7f7f7;
+    background-color: transparent !important;
     border: 1px solid #0082bd;
 }
 
@@ -43,12 +43,17 @@ button {
     display: inline-block;
     padding: 8px 15px;
     font-size: 0.8rem;
-    color: white;
+    color: white !important;
     cursor: pointer;
     transition: 0.5s;
     border: 2px solid #0082BD;
     background-color: #0082BD;
     line-height: initial !important;
+    text-decoration: none !important;
+}
+
+.btn_.a_ {
+    padding: 8px 0px;
 }
 
 .btn_ p {

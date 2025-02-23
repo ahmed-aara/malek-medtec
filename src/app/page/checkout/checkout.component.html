@@ -2,34 +2,34 @@
 
     <div class="uk-container">
 
-        <div class="uk-grid-small" uk-grid>
+        <form [formGroup]="form" (ngSubmit)="checkout()">
 
-            <div class="uk-width-expand">
+            <div class="uk-grid-small" uk-grid>
 
-                <h4 class="f_Bold mb-2">Checkout</h4>
+                <div class="uk-width-expand">
 
-                <form [formGroup]="form">
+                    <h4 class="f_Bold mb-2">Checkout</h4>
 
                     <div class="uk-grid-small uk-child-width-1-2@l" uk-grid>
 
                         <div>
                             <h6>First Name <span class="redC_">*</span></h6>
-                            <input class="uk-input" type="text" formControlName="firstname">
+                            <input class="uk-input" type="text" formControlName="firstname" required>
                         </div>
 
                         <div>
                             <h6>Last Name <span class="redC_">*</span></h6>
-                            <input class="uk-input" type="text" formControlName="lastname">
+                            <input class="uk-input" type="text" formControlName="lastname" required>
                         </div>
 
                         <div class="uk-width-1-1">
                             <h6>Email <span class="redC_">*</span></h6>
-                            <input class="uk-input" type="email" formControlName="email">
+                            <input class="uk-input" type="email" formControlName="email" required>
                         </div>
 
                         <div class="uk-width-1-1">
                             <h6>Address <span class="redC_">*</span></h6>
-                            <input class="uk-input" type="text" formControlName="address">
+                            <input class="uk-input" type="text" formControlName="address" required>
                         </div>
 
                         <div [ngClass]="states.length > 0? 'uk-width-1-2' : 'uk-width-1-1'">
@@ -55,88 +55,89 @@
                                 (inputChanged)="validatePhoneNumber()">
                             </angular-phone-number-input>
 
-                            <h6 *ngIf="isValidNumber === false" style="color: red;">Invalid phone number</h6>
-                            <h6 *ngIf="isValidNumber === true" style="color: green;">Valid phone number</h6>
+                            <h6 *ngIf="isValidNumber === false" class="redC_">Invalid phone number</h6>
                         </div>
 
                     </div>
 
-                </form>
+                    <h4 class="f_Bold mt-3 mb-2">Payment</h4>
 
-                <h4 class="f_Bold mt-3 mb-2">Payment</h4>
+                    <div class="payment_section">
+                        <button (click)="selectPayment('online-payment')" type="button"
+                            class="btn_payment uk-flex uk-flex-middle uk-flex-between active"
+                            style="border-top-left-radius: 5px; border-top-right-radius: 5px;">
+                            <div class="uk-flex uk-flex-middle">
+                                <img class="img"
+                                    [src]="paymentType === 'online-payment' ? 'assets/img/vector/check_circle.svg' : 'assets/img/vector/empty_circle.svg'"
+                                    alt="home" width="18" height="18" />
 
-                <div class="payment_section">
-                    <button (click)="selectPayment('online-payment')" type="button"
-                        class="btn_payment uk-flex uk-flex-middle uk-flex-between active"
-                        style="border-top-left-radius: 5px; border-top-right-radius: 5px;">
-                        <div class="uk-flex uk-flex-middle">
-                            <img class="img"
-                                [src]="paymentType === 'online-payment' ? 'assets/img/vector/check_circle.svg' : 'assets/img/vector/empty_circle.svg'"
-                                alt="home" width="18" height="18" />
-
-                            <p class="f_SemiBold ml-1">
-                                Credit Card / Other Methods
-                            </p>
-                        </div>
-
-                        <div>
-                            <div class="uk-flex">
-                                <img class="img" src="/assets/img/vector/visa.svg" alt="home" width="60" height="60"
-                                    style="margin-left: 4px" />
-
-                                <img class="img" src="/assets/img/vector/mastercard.svg" alt="home" width="60"
-                                    height="60" style="margin-left: 4px" />
+                                <p class="f_SemiBold ml-1">
+                                    Credit Card / Other Methods
+                                </p>
                             </div>
-                        </div>
-                    </button>
 
-                    <button (click)="selectPayment('cod')" type="button"
-                        class="btn_payment uk-flex uk-flex-middle uk-flex-between active"
-                        style="border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; border-top: none;">
-                        <div class="uk-flex uk-flex-middle">
-                            <img class="img"
-                                [src]="paymentType === 'cod' ? 'assets/img/vector/check_circle.svg' : 'assets/img/vector/empty_circle.svg'"
-                                alt="home" width="18" height="18" />
+                            <div>
+                                <div class="uk-flex">
+                                    <img class="img" src="/assets/img/vector/visa.svg" alt="home" width="60" height="60"
+                                        style="margin-left: 4px" />
 
-                            <p class="f_SemiBold ml-1">
-                                Cash on Delivery (COD)
-                            </p>
-                        </div>
-                    </button>
+                                    <img class="img" src="/assets/img/vector/mastercard.svg" alt="home" width="60"
+                                        height="60" style="margin-left: 4px" />
+                                </div>
+                            </div>
+                        </button>
+
+                        <button (click)="selectPayment('cod')" type="button"
+                            class="btn_payment uk-flex uk-flex-middle uk-flex-between active"
+                            style="border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; border-top: none;">
+                            <div class="uk-flex uk-flex-middle">
+                                <img class="img"
+                                    [src]="paymentType === 'cod' ? 'assets/img/vector/check_circle.svg' : 'assets/img/vector/empty_circle.svg'"
+                                    alt="home" width="18" height="18" />
+
+                                <p class="f_SemiBold ml-1">
+                                    Cash on Delivery (COD)
+                                </p>
+                            </div>
+                        </button>
+                    </div>
+
                 </div>
 
-            </div>
+                <div class="uk-width-1-3@l">
 
-            <div class="uk-width-1-3@l">
+                    <div class="card_ p-1">
 
-                <div class="card_ p-1">
+                        <h5 class="f_SemiBold mb-1">Your Cart</h5>
 
-                    <h5 class="f_SemiBold mb-1">Your Cart</h5>
+                        <div *ngFor="let item of cartArr$ | async; let i = index">
+                            <div class="card_cart">
 
-                    <div *ngFor="let item of cartArr$ | async; let i = index">
-                        <div class="card_cart">
+                                <div class="uk-flex">
 
-                            <div class="uk-flex">
+                                    <div class="bg_ full_">
+                                        <a routerLink="/detail/{{item._id}}">
+                                            <img class="full_w full_h" [src]="img_url + item.img" alt="">
+                                        </a>
+                                    </div>
 
-                                <div class="bg_ full_">
-                                    <a routerLink="/detail/{{item._id}}">
-                                        <img class="full_w full_h" [src]="img_url + item.img" alt="">
-                                    </a>
-                                </div>
+                                    <div class="ml-1 uk-width-expand">
 
-                                <div class="ml-1 uk-width-expand">
+                                        <div class="uk-flex uk-flex-middle uk-flex-between">
 
-                                    <div class="uk-flex uk-flex-middle uk-flex-between">
+                                            <div>
 
-                                        <div>
+                                                <h6 class="f_SemiBold line_height" style="--height: 1.2rem">
+                                                    {{item.name}}
+                                                </h6>
+                                                <h6 class="grayC_ line_height mt-1" style="--height: 1.2rem">Quantity:
+                                                    <span class="blackC_ f_SemiBold">{{item.quantity}}</span>
+                                                </h6>
+                                                <h6 class="grayC_ line_height" style="--height: 1.2rem">Total: <span
+                                                        class="blackC_ f_SemiBold">{{item.total |number: '1.2-2'}}
+                                                        KWD</span></h6>
 
-                                            <h6 class="f_SemiBold line_height" style="--height: 1.2rem">{{item.name}}
-                                            </h6>
-                                            <h6 class="grayC_ line_height mt-1" style="--height: 1.2rem">Quantity: <span
-                                                    class="blackC_ f_SemiBold">{{item.quantity}}</span></h6>
-                                            <h6 class="grayC_ line_height" style="--height: 1.2rem">Total: <span
-                                                    class="blackC_ f_SemiBold">{{item.total |number: '1.2-2'}}
-                                                    KWD</span></h6>
+                                            </div>
 
                                         </div>
 
@@ -144,45 +145,44 @@
 
                                 </div>
 
+                                <div class="line_ my-1"></div>
+
                             </div>
-
-                            <div class="line_ my-1"></div>
-
                         </div>
+
+                        <a class="btn_ a_ blue_ full_w mt-2 text-center f_SemiBold" routerLink="/cart">Back to Cart</a>
+
                     </div>
 
-                    <a class="btn_ blue_ full_w mt-2 text-center f_SemiBold" routerLink="/contact"
-                        style="--padding: 8px 0px; --size: 1rem; font-size: 0.9rem;">Back to Cart</a>
+                    <div class="card_ p-1 mt-2">
 
-                </div>
+                        <h5 class="f_SemiBold mb-1">Total</h5>
 
-                <div class="card_ p-1 mt-2">
+                        <div class="uk-flex uk-flex-between mt-2">
+                            <h6 class="sub_title">SUBTOTAL</h6>
+                            <h6 class="blackC_ f_Bold">{{total$| async | number: '1.2-2'}} KWD</h6>
+                        </div>
 
-                    <h5 class="f_SemiBold mb-1">Total</h5>
+                        <div class="uk-flex uk-flex-between">
+                            <h6 class="sub_title">TAX</h6>
+                            <h6 class="blackC_ f_Bold">11 KWD</h6>
+                        </div>
 
-                    <div class="uk-flex uk-flex-between mt-2">
-                        <h6 class="sub_title">SUBTOTAL</h6>
-                        <h6 class="blackC_ f_Bold">{{total$| async | number: '1.2-2'}} KWD</h6>
+                        <div class="uk-flex uk-flex-between">
+                            <h6 class="sub_title">SHIPPING</h6>
+                            <h6 class="blackC_ f_Bold">40 KWD</h6>
+                        </div>
+
+                        <button [disabled]="form.invalid" type="submit"
+                            class="btn_ a_ blue_ full_w mt-2 text-center f_SemiBold">Pay</button>
+
                     </div>
-
-                    <div class="uk-flex uk-flex-between">
-                        <h6 class="sub_title">TAX</h6>
-                        <h6 class="blackC_ f_Bold">11 KWD</h6>
-                    </div>
-
-                    <div class="uk-flex uk-flex-between">
-                        <h6 class="sub_title">SHIPPING</h6>
-                        <h6 class="blackC_ f_Bold">40 KWD</h6>
-                    </div>
-
-                    <a class="btn_ blue_ full_w mt-2 text-center f_SemiBold" routerLink="/contact"
-                        style="--padding: 8px 0px; --size: 1rem; font-size: 0.9rem;">Pasd</a>
 
                 </div>
 
             </div>
 
-        </div>
+        </form>
 
     </div>
 

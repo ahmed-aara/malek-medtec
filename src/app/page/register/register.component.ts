@@ -33,6 +33,11 @@ export class RegisterComponent {
       response => {
         // localStorage.setItem('admin', 'true')
         // this.router.navigateByUrl('/admin/product')
+
+        this.error_box = {
+          msg: '',
+          status: false
+        }
       },
       err => {
         console.log(err)

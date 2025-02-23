@@ -85,7 +85,7 @@ export class AuthService {
   }
 
   public profile(): Observable<any> {
-    return this.http.get(this.api + 'info', { headers: { Authorization: `Bearer ${this.getToken()}` } })
+    return this.http.get(this.api + 'profile', { headers: { Authorization: `Bearer ${this.getToken()}` } })
   }
 
   public logout(): void {
