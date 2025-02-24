@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Store, select } from '@ngrx/store';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { OrderService } from 'src/app/services/order.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -46,6 +47,7 @@ export class CheckoutComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private route: ActivatedRoute,
+    private order: OrderService
   ) {
     this.cartArr$ = store.pipe(select('cart'));
     this.total$ = store.pipe(select('total'));
@@ -180,6 +182,9 @@ export class CheckoutComponent implements OnInit {
         },
         type_payment: this.paymentType
       }
+
+     
+      
 
       console.log(data)
     } else {
