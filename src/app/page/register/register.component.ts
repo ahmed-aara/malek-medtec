@@ -28,11 +28,16 @@ export class RegisterComponent implements OnInit {
   });
 
   constructor(private auth: AuthService, private route: ActivatedRoute,
-        private router: Router
+    private router: Router
   ) { }
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params: any) => {
       this.fullQuery = params
+
+      this.form.patchValue({
+        firstname: params.first_name,
+        lastname: params.last_name,
+      });
     });
   }
 

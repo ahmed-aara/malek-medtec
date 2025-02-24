@@ -66,20 +66,24 @@ export class CheckoutComponent implements OnInit {
 
     this.route.queryParams.subscribe((params: any) => {
 
-      let country_data = this.locationService.getCountries().find((item) => {
+      let country_data: any = this.locationService.getCountries().find((item) => {
         return item.name === params.country
       })
 
       this.selectedCountry = country_data
-      this.states = this.locationService.getStates(this.selectedCountry.isoCode);
+      if (country_data && country_data.isoCode) {
+        this.states = this.locationService.getStates(country_data.isoCode);
 
-      let states_data = this.locationService.getStates(this.selectedCountry.isoCode).find((item) => {
-        return item.name === params.state
-      });
+        let states_data = this.locationService.getStates(country_data.isoCode).find((item) => {
+          return item.name === params.state
+        });
 
-      this.selectedState = states_data
+        this.selectedState = states_data
+      }
 
-      this.paymentType = params.type_payment
+      if (params.type_payment) {
+        this.paymentType = params.type_payment
+      }
 
       this.form.patchValue({
         firstname: params.first_name,
@@ -95,7 +99,18 @@ export class CheckoutComponent implements OnInit {
     if (this.auth.isLoggedIn()) {
       this.auth.profile().subscribe(
         response => {
-          this.user_id = response.user.id
+          const user = response.user
+
+          this.user_id = user.id
+          const nameParts = user.name.trim().split(' ');
+
+          this.form.patchValue({
+            firstname: user.name ? nameParts[0] : '',
+            lastname: user.name ? nameParts.slice(1).join(' ') : '',
+            phoneNumber: user.phone ? user.phone : '',
+            email: user.email,
+          });
+
         },
         err => {
           console.log(err)
@@ -128,17 +143,46 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkout() {
+
+    let country_data = this.locationService.getCountries().find((item) => {
+      return item.isoCode === this.selectedCountry.isoCode
+    })
+
+    let states_data = this.locationService.getStates(this.selectedCountry.isoCode).find((item) => {
+      return item.isoCode === this.selectedState.isoCode
+    });
+
     if (this.user_id) {
       console.log('pay')
-    } else {
 
-      let country_data = this.locationService.getCountries().find((item) => {
-        return item.isoCode === this.selectedCountry
-      })
+      let cart_arr: any = []
 
-      let states_data = this.locationService.getStates(this.selectedCountry).find((item) => {
-        return item.isoCode === this.selectedState
+      this.cartArr$.subscribe(cartData => {
+        for (let x of cartData) {
+          cart_arr.push({
+            id: x._id,
+            quantity: x.quantity
+          })
+        }
       });
+
+      let data = {
+        user_id: this.user_id,
+        products_id: cart_arr,
+        customer_date: {
+          name: `${this.form.value.firstname} ${this.form.value.lastname}`,
+          phone: this.form.value.phoneNumber
+        },
+        customer_location: {
+          address: this.form.value.address,
+          country: country_data && country_data?.name,
+          state: states_data && states_data?.name
+        },
+        type_payment: this.paymentType
+      }
+
+      console.log(data)
+    } else {
 
       this.router.navigate(['/login'], {
         queryParams: {

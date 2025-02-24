@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
 
   //Form
   form = new FormGroup({
-    email: new FormControl('a@email.com', [Validators.required, Validators.email]),
-    password: new FormControl('123', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
   });
 
   constructor(private auth: AuthService, private route: ActivatedRoute,
@@ -36,8 +36,6 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
-
     this.auth.login(this.form.value).subscribe(
       response => {
         // localStorage.setItem('admin', 'true')
